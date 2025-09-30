@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
-import styles from './BooleanAnswer.module.css'
+import { BooleanAnswerValue } from './domain/BooleanAnswerValue'
+import { BooleanAnswerLabels } from './domain/BooleanAnswerLabels'
+import { BooleanAnswerSize } from './domain/BooleanAnswerSize'
+import { SizeType } from './domain/SizeType'
+import { StylesProvider } from './infrastructure/StylesProvider'
+import { BooleanAnswerService } from './application/BooleanAnswerService'
 
 export interface BooleanAnswerProps {
   /**
@@ -29,7 +34,7 @@ export interface BooleanAnswerProps {
   /**
    * Size of the buttons
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: SizeType
 }
 
 /**
@@ -37,88 +42,62 @@ export interface BooleanAnswerProps {
  * Automatically detects question type and provides appropriate button labels.
  */
 export const BooleanAnswer = React.forwardRef<HTMLDivElement, BooleanAnswerProps>(
-  ({
-    initialValue,
-    onSelect,
-    trueLabel = 'True',
-    falseLabel = 'False',
-    disabled = false,
-    className,
-    size = 'md',
-    ...props
-  }, ref) => {
-    if (
-      initialValue !== undefined &&
-      initialValue !== null &&
-      typeof initialValue !== 'boolean'
-    ) {
-      throw new Error(
-        'BooleanAnswer initialValue must be boolean, null, or undefined'
+  (props, ref): JSX.Element => {
+    const {
+      initialValue,
+      onSelect,
+      trueLabel,
+      falseLabel,
+      disabled,
+      className,
+      size,
+      ...otherProps
+    } = props
+
+    const labels = BooleanAnswerLabels.create(trueLabel, falseLabel)
+    const sizeObject = BooleanAnswerSize.create(size)
+    const finalDisabled = disabled !== undefined ? disabled : false
+
+    const initialValueObject = BooleanAnswerValue.create(initialValue)
+    const [selectedValue, setSelectedValue] = useState<BooleanAnswerValue>(initialValueObject)
+
+    const handleSelect = (value: boolean): void => {
+      const newValue = BooleanAnswerService.handleSelection(
+        selectedValue,
+        value,
+        finalDisabled,
+        onSelect
       )
-    }
-
-    const [selectedValue, setSelectedValue] = useState<boolean | null>(
-      initialValue !== null && initialValue !== undefined ? initialValue : null
-    )
-
-    const handleSelect = (value: boolean) => {
-      if (disabled) return
-
-      setSelectedValue(value)
-      onSelect && onSelect(value)
+      setSelectedValue(newValue)
     }
 
 
-    const getSizeClass = () => {
-      switch (size) {
-        case 'sm': return styles.small
-        case 'lg': return styles.large
-        default: return styles.medium
-      }
-    }
-
-    const getButtonClasses = (isSelected: boolean, isTrue: boolean) => {
-      return [
-        styles.button,
-        getSizeClass(),
-        isSelected ? styles.selected : '',
-        isSelected && isTrue ? styles.true : '',
-        isSelected && !isTrue ? styles.false : ''
-      ].filter(Boolean).join(' ')
-    }
-
-    const getContainerClasses = () => {
-      return [
-        styles.container,
-        disabled ? styles.disabled : '',
-        className
-      ].filter(Boolean).join(' ')
-    }
+    const sizeClass = StylesProvider.getSizeClass(sizeObject.getSize())
 
     return (
       <div
         ref={ref}
-        className={getContainerClasses()}
-        {...props}
+        className={StylesProvider.getContainerClasses(finalDisabled, className)}
+        {...otherProps}
       >
         <button
-          disabled={disabled}
+          disabled={finalDisabled}
           onClick={() => handleSelect(true)}
-          className={getButtonClasses(selectedValue === true, true)}
-          aria-pressed={selectedValue === true}
-          aria-label={`${trueLabel} option`}
+          className={StylesProvider.getButtonClasses(selectedValue.isTrue(), true, sizeClass)}
+          aria-pressed={selectedValue.isTrue()}
+          aria-label={`${labels.getTrueLabel()} option`}
         >
-          {trueLabel}
+          {labels.getTrueLabel()}
         </button>
 
         <button
-          disabled={disabled}
+          disabled={finalDisabled}
           onClick={() => handleSelect(false)}
-          className={getButtonClasses(selectedValue === false, false)}
-          aria-pressed={selectedValue === false}
-          aria-label={`${falseLabel} option`}
+          className={StylesProvider.getButtonClasses(selectedValue.isFalse(), false, sizeClass)}
+          aria-pressed={selectedValue.isFalse()}
+          aria-label={`${labels.getFalseLabel()} option`}
         >
-          {falseLabel}
+          {labels.getFalseLabel()}
         </button>
       </div>
     )
