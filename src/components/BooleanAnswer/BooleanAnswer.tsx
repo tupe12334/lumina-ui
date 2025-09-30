@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styles from './BooleanAnswer.module.css'
 
 export interface BooleanAnswerProps {
   /**
@@ -68,50 +69,44 @@ export const BooleanAnswer = React.forwardRef<HTMLDivElement, BooleanAnswerProps
     }
 
 
-    const containerStyle: React.CSSProperties = {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '12px',
-      opacity: disabled ? 0.75 : 1,
+    const getSizeClass = () => {
+      switch (size) {
+        case 'sm': return styles.small
+        case 'lg': return styles.large
+        default: return styles.medium
+      }
     }
 
-    const getButtonStyle = (isSelected: boolean): React.CSSProperties => ({
-      minWidth: '100px',
-      padding: size === 'sm' ? '8px 16px' : size === 'lg' ? '12px 24px' : '10px 20px',
-      borderRadius: '12px',
-      border: '2px solid',
-      fontWeight: 500,
-      fontSize: size === 'sm' ? '14px' : size === 'lg' ? '18px' : '16px',
-      cursor: disabled ? 'not-allowed' : 'pointer',
-      transition: 'all 0.2s ease',
-      backgroundColor: isSelected ? '#ef4444' : '#ffffff',
-      borderColor: isSelected ? '#ef4444' : '#d1d5db',
-      color: isSelected ? '#ffffff' : '#374151',
-      opacity: disabled ? 0.5 : 1,
-    })
+    const getButtonClasses = (isSelected: boolean, isTrue: boolean) => {
+      return [
+        styles.button,
+        getSizeClass(),
+        isSelected ? styles.selected : '',
+        isSelected && isTrue ? styles.true : '',
+        isSelected && !isTrue ? styles.false : ''
+      ].filter(Boolean).join(' ')
+    }
+
+    const getContainerClasses = () => {
+      return [
+        styles.container,
+        disabled ? styles.disabled : '',
+        className
+      ].filter(Boolean).join(' ')
+    }
 
     return (
       <div
         ref={ref}
-        style={{...containerStyle, ...className}}
+        className={getContainerClasses()}
         {...props}
       >
         <button
           disabled={disabled}
           onClick={() => handleSelect(true)}
-          style={getButtonStyle(selectedValue === true)}
+          className={getButtonClasses(selectedValue === true, true)}
           aria-pressed={selectedValue === true}
           aria-label={`${trueLabel} option`}
-          onMouseEnter={(e) => {
-            if (!disabled && selectedValue !== true) {
-              e.currentTarget.style.borderColor = '#9ca3af'
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!disabled && selectedValue !== true) {
-              e.currentTarget.style.borderColor = '#d1d5db'
-            }
-          }}
         >
           {trueLabel}
         </button>
@@ -119,19 +114,9 @@ export const BooleanAnswer = React.forwardRef<HTMLDivElement, BooleanAnswerProps
         <button
           disabled={disabled}
           onClick={() => handleSelect(false)}
-          style={getButtonStyle(selectedValue === false)}
+          className={getButtonClasses(selectedValue === false, false)}
           aria-pressed={selectedValue === false}
           aria-label={`${falseLabel} option`}
-          onMouseEnter={(e) => {
-            if (!disabled && selectedValue !== false) {
-              e.currentTarget.style.borderColor = '#9ca3af'
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!disabled && selectedValue !== false) {
-              e.currentTarget.style.borderColor = '#d1d5db'
-            }
-          }}
         >
           {falseLabel}
         </button>
