@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
-      exclude: ['**/*.stories.*', '**/*.test.*']
+      exclude: ['**/*.stories.*', '**/*.test.*', '**/*.spec.*', '**/tests/**/*', '**/test/**/*']
     })
   ],
   build: {
@@ -27,7 +27,7 @@ export default defineConfig({
         }
       }
     },
-    sourcemap: true
+    sourcemap: false
   },
   resolve: {
     alias: {
