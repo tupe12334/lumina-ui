@@ -17,8 +17,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={clsx(
           styles.button,
-          styles[finalVariant],
-          styles[finalSize],
+          {
+            [styles.primary]: finalVariant === 'primary',
+            [styles.secondary]: finalVariant === 'secondary',
+            [styles.outline]: finalVariant === 'outline',
+          },
+          {
+            [styles.sm]: finalSize === 'sm',
+            [styles.md]: finalSize === 'md',
+            [styles.lg]: finalSize === 'lg',
+          },
           className
         )}
         ref={ref}
