@@ -28,10 +28,6 @@
     "test:visual": "playwright test --project=chromium-visual",
     "test:visual:update": "playwright test --project=chromium-visual --update-snapshots",
     "test:visual:ui": "playwright test --project=chromium-visual --ui",
-    "test:visual:button": "playwright test --project=chromium-visual src/components/Button/tests/visual/Button.spec.ts",
-    "test:visual:button:update": "playwright test --project=chromium-visual src/components/Button/tests/visual/Button.spec.ts --update-snapshots",
-    "test:visual:booleananswer": "playwright test --project=chromium-visual src/components/BooleanAnswer/tests/visual/BooleanAnswer.spec.ts",
-    "test:visual:booleananswer:update": "playwright test --project=chromium-visual src/components/BooleanAnswer/tests/visual/BooleanAnswer.spec.ts --update-snapshots",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
