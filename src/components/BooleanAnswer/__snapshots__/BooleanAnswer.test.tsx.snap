@@ -1,0 +1,300 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BooleanAnswer renders correctly when disabled 1`] = `
+<div
+  class="_container_83693f _disabled_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+    disabled=""
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+    disabled=""
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with Agree/Disagree labels 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="Agree option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    Agree
+  </button>
+  <button
+    aria-label="Disagree option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    Disagree
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with Hebrew labels 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="כן option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    כן
+  </button>
+  <button
+    aria-label="לא option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    לא
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with all props combined 1`] = `
+<div
+  class="_container_83693f _disabled_83693f custom-class"
+  data-testid="complex-boolean-answer"
+>
+  <button
+    aria-label="Accept option"
+    aria-pressed="true"
+    class="_button_83693f _large_83693f _selected_83693f _true_83693f"
+    disabled=""
+  >
+    Accept
+  </button>
+  <button
+    aria-label="Decline option"
+    aria-pressed="false"
+    class="_button_83693f _large_83693f"
+    disabled=""
+  >
+    Decline
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with custom className 1`] = `
+<div
+  class="_container_83693f custom-class"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with custom labels 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="Yes option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    Yes
+  </button>
+  <button
+    aria-label="No option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    No
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with default props 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with initial value false 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="true"
+    class="_button_83693f _medium_83693f _selected_83693f _false_83693f"
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with initial value null 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with initial value true 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="true"
+    class="_button_83693f _medium_83693f _selected_83693f _true_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with large size 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _large_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _large_83693f"
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with medium size 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with onSelect callback 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _medium_83693f"
+  >
+    False
+  </button>
+</div>
+`;
+
+exports[`BooleanAnswer renders correctly with small size 1`] = `
+<div
+  class="_container_83693f"
+>
+  <button
+    aria-label="True option"
+    aria-pressed="false"
+    class="_button_83693f _small_83693f"
+  >
+    True
+  </button>
+  <button
+    aria-label="False option"
+    aria-pressed="false"
+    class="_button_83693f _small_83693f"
+  >
+    False
+  </button>
+</div>
+`;
