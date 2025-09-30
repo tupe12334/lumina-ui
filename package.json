@@ -45,6 +45,14 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tupe12334/lumina-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tupe12334/lumina-ui/issues"
+  },
+  "homepage": "https://github.com/tupe12334/lumina-ui#readme",
   "peerDependencies": {
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
