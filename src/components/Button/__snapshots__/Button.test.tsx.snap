@@ -2,7 +2,7 @@
 
 exports[`Button renders correctly when disabled 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4"
+  class="_button_2a1efe _primary_2a1efe _md_2a1efe"
   disabled=""
 >
   Disabled Button
@@ -11,7 +11,7 @@ exports[`Button renders correctly when disabled 1`] = `
 
 exports[`Button renders correctly with all props combined 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-gray-300 bg-transparent hover:bg-gray-50 h-12 px-6 text-lg custom-class"
+  class="_button_2a1efe _outline_2a1efe _lg_2a1efe custom-class"
   data-testid="complex-button"
   disabled=""
 >
@@ -21,7 +21,7 @@ exports[`Button renders correctly with all props combined 1`] = `
 
 exports[`Button renders correctly with custom className 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4 custom-class"
+  class="_button_2a1efe _primary_2a1efe _md_2a1efe custom-class"
 >
   Custom Button
 </button>
@@ -29,7 +29,7 @@ exports[`Button renders correctly with custom className 1`] = `
 
 exports[`Button renders correctly with default props 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4"
+  class="_button_2a1efe _primary_2a1efe _md_2a1efe"
 >
   Click me
 </button>
@@ -37,7 +37,7 @@ exports[`Button renders correctly with default props 1`] = `
 
 exports[`Button renders correctly with large size 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-12 px-6 text-lg"
+  class="_button_2a1efe _primary_2a1efe _lg_2a1efe"
 >
   Large Button
 </button>
@@ -45,7 +45,7 @@ exports[`Button renders correctly with large size 1`] = `
 
 exports[`Button renders correctly with medium size 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4"
+  class="_button_2a1efe _primary_2a1efe _md_2a1efe"
 >
   Medium Button
 </button>
@@ -53,7 +53,7 @@ exports[`Button renders correctly with medium size 1`] = `
 
 exports[`Button renders correctly with outline variant 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-gray-300 bg-transparent hover:bg-gray-50 h-10 px-4"
+  class="_button_2a1efe _outline_2a1efe _md_2a1efe"
 >
   Outline Button
 </button>
@@ -61,7 +61,7 @@ exports[`Button renders correctly with outline variant 1`] = `
 
 exports[`Button renders correctly with primary variant 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4"
+  class="_button_2a1efe _primary_2a1efe _md_2a1efe"
 >
   Primary Button
 </button>
@@ -69,7 +69,7 @@ exports[`Button renders correctly with primary variant 1`] = `
 
 exports[`Button renders correctly with secondary variant 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gray-100 text-gray-900 hover:bg-gray-200 h-10 px-4"
+  class="_button_2a1efe _secondary_2a1efe _md_2a1efe"
 >
   Secondary Button
 </button>
@@ -77,7 +77,7 @@ exports[`Button renders correctly with secondary variant 1`] = `
 
 exports[`Button renders correctly with small size 1`] = `
 <button
-  class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-8 px-3 text-sm"
+  class="_button_2a1efe _primary_2a1efe _sm_2a1efe"
 >
   Small Button
 </button>
