@@ -7,8 +7,7 @@
     "tagAnnotation": "Release v${version}"
   },
   "npm": {
-    "publish": true,
-    "publishArgs": ["--access", "public"]
+    "publish": true
   },
   "github": {
     "release": true,
