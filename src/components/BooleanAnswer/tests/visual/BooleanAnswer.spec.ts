@@ -66,15 +66,15 @@ test.describe('BooleanAnswer Component Visual Tests', () => {
       // Test initial state
       await expect(page.locator('#storybook-root')).toHaveScreenshot('booleananswer-initial-state.png')
 
-      // Click true button
-      await page.locator('button:has-text("True")').click()
+      // Click yes button
+      await page.locator('button:has-text("Yes")').click()
       await page.waitForTimeout(300)
-      await expect(page.locator('#storybook-root')).toHaveScreenshot('booleananswer-true-selected.png')
+      await expect(page.locator('#storybook-root')).toHaveScreenshot('booleananswer-yes-selected.png')
 
-      // Click false button
-      await page.locator('button:has-text("False")').click()
+      // Click no button
+      await page.locator('button:has-text("No")').click()
       await page.waitForTimeout(300)
-      await expect(page.locator('#storybook-root')).toHaveScreenshot('booleananswer-false-selected.png')
+      await expect(page.locator('#storybook-root')).toHaveScreenshot('booleananswer-no-selected.png')
     })
   })
 })
