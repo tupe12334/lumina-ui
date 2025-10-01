@@ -4,7 +4,7 @@ Thank you for your interest in contributing to Lumina UI! This guide will help y
 
 ## Folder Structure
 
-The project follows a well-organized structure to maintain clarity and scalability:
+The project follows a **Domain-Driven Design (DDD)** architecture and is organized to maintain clarity and scalability:
 
 ```
 lumina-ui/
