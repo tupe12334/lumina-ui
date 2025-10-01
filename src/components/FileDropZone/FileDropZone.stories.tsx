@@ -50,6 +50,10 @@ const meta: Meta<typeof FileDropZone> = {
       control: 'text',
       description: 'Text for the browse button',
     },
+    icon: {
+      control: 'text',
+      description: 'Emoji icon to display instead of the default upload icon',
+    },
     onFilesAdded: {
       action: 'files added',
       description: 'Callback when files are added',
@@ -153,6 +157,41 @@ export const LargeFiles: Story = {
     maxFiles: 2,
     maxFileSize: 100 * 1024 * 1024, // 100MB
     acceptedTypes: ['*/*'],
+    allowMultiple: true,
+  },
+}
+
+// With emoji icon
+export const WithEmojiIcon: Story = {
+  args: {
+    title: 'Upload Your Photos',
+    description: 'Drag and drop your photos here, or click to browse',
+    buttonText: 'Select Photos',
+    icon: '📷',
+    maxFiles: 10,
+    maxFileSize: 5 * 1024 * 1024,
+    acceptedTypes: ['image/*'],
+    allowMultiple: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Example with an emoji icon instead of the default SVG upload icon.',
+      },
+    },
+  },
+}
+
+// Document upload with emoji
+export const DocumentUploadEmoji: Story = {
+  args: {
+    title: 'Upload Documents',
+    description: 'Select your important documents',
+    buttonText: 'Choose Documents',
+    icon: '📄',
+    maxFiles: 5,
+    maxFileSize: 20 * 1024 * 1024,
+    acceptedTypes: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
     allowMultiple: true,
   },
 }

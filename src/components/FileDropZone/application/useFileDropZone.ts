@@ -3,6 +3,8 @@ import { FileUpload } from '../domain/FileUpload'
 import { FileValidationRules } from '../domain/FileValidation'
 import { DragState } from '../domain/DragState'
 import { FileDropZoneService } from './FileDropZoneService'
+import { FilePreviewService } from './FilePreviewService'
+import { FileManagementService } from './FileManagementService'
 import { type UseFileDropZoneConfig, type UseFileDropZoneReturn } from './types'
 
 export function useFileDropZone(inputConfig: UseFileDropZoneConfig): UseFileDropZoneReturn {
@@ -14,7 +16,7 @@ export function useFileDropZone(inputConfig: UseFileDropZoneConfig): UseFileDrop
   const validationRules = FileValidationRules.create(config)
 
   const handleFilesProcessing = useCallback(async (newFiles: FileUpload[]) => {
-    const filesWithPreviews = await FileDropZoneService.addPreviewUrls(newFiles)
+    const filesWithPreviews = await FilePreviewService.addPreviewUrls(newFiles)
     setFiles(currentFiles => [...currentFiles, ...filesWithPreviews])
 
     if (config.onFilesAdded) {
@@ -95,28 +97,28 @@ export function useFileDropZone(inputConfig: UseFileDropZoneConfig): UseFileDrop
     handleFileInput,
     addFiles,
     removeFile: useCallback((fileId: string) => {
-      setFiles(currentFiles => FileDropZoneService.removeFile(currentFiles, fileId))
+      setFiles(currentFiles => FileManagementService.removeFile(currentFiles, fileId))
       if (config.onFileRemoved) {
         config.onFileRemoved(fileId)
       }
     }, [config]),
     retryFile: useCallback((fileId: string) => {
-      setFiles(currentFiles => FileDropZoneService.retryFile(currentFiles, fileId))
+      setFiles(currentFiles => FileManagementService.retryFile(currentFiles, fileId))
       if (config.onFileRetried) {
         config.onFileRetried(fileId)
       }
     }, [config]),
     clearAll: useCallback(() => {
-      setFiles(FileDropZoneService.clearAllFiles())
+      setFiles(FileManagementService.clearAllFiles())
     }, []),
     updateFileProgress: useCallback((fileId: string, progress: number) => {
-      setFiles(currentFiles => FileDropZoneService.updateFileProgress(currentFiles, fileId, progress))
+      setFiles(currentFiles => FileManagementService.updateFileProgress(currentFiles, fileId, progress))
     }, []),
     updateFileStatus: useCallback((fileId: string, status: 'pending' | 'uploading' | 'uploaded' | 'processing' | 'completed' | 'failed') => {
-      setFiles(currentFiles => FileDropZoneService.updateFileStatus(currentFiles, fileId, status))
+      setFiles(currentFiles => FileManagementService.updateFileStatus(currentFiles, fileId, status))
     }, []),
     updateFileError: useCallback((fileId: string, error: string) => {
-      setFiles(currentFiles => FileDropZoneService.updateFileError(currentFiles, fileId, error))
+      setFiles(currentFiles => FileManagementService.updateFileError(currentFiles, fileId, error))
     }, []),
     getFileInputProps: useCallback(() => ({
       type: 'file' as const,

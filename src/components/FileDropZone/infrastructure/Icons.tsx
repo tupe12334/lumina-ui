@@ -160,7 +160,7 @@ export const AlertIcon: React.FC<IconProps> = ({ className, size = 24 }) => (
     strokeLinejoin="round"
     className={className}
   >
-    <triangle points="7.86,2 16.14,2 22,13.5 12,22 2,13.5" />
+    <polygon points="7.86,2 16.14,2 22,13.5 12,22 2,13.5" />
     <line x1="12" y1="8" x2="12" y2="12" />
     <line x1="12" y1="16" x2="12.01" y2="16" />
   </svg>

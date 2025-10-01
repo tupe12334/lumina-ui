@@ -1,0 +1,49 @@
+#!/bin/sh
+
+echo "🔍 Running comprehensive pre-push checks..."
+
+# Function to run command and check exit code
+run_check() {
+    local check_name="$1"
+    local command="$2"
+
+    echo "📋 Running $check_name..."
+    if ! $command; then
+        echo "❌ $check_name failed!"
+        echo "💡 Fix the issues before pushing."
+        return 1
+    else
+        echo "✅ $check_name passed!"
+        return 0
+    fi
+}
+
+# Run comprehensive checks
+checks_failed=0
+
+# Full type check
+if ! run_check "full type check" "pnpm run typecheck"; then
+    checks_failed=1
+fi
+
+# Full test suite
+if ! run_check "test suite" "pnpm run test"; then
+    checks_failed=1
+fi
+
+# Full build check
+if ! run_check "build check" "pnpm run build"; then
+    checks_failed=1
+fi
+
+# Final result
+if [ $checks_failed -eq 1 ]; then
+    echo ""
+    echo "❌ Pre-push checks failed! Please fix the issues above before pushing."
+    echo "💡 You can bypass with: git push --no-verify (not recommended)"
+    exit 1
+else
+    echo ""
+    echo "🎉 All pre-push checks passed! Proceeding with push..."
+    exit 0
+fi

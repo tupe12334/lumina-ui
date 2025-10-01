@@ -22,40 +22,57 @@ lumina-ui/
 
 This structure promotes separation of concerns, testability, and maintainability while making it easy for contributors to understand where different types of code should be placed.
 
-## Before Submitting Changes
+## Automated Quality Checks
 
-Before submitting any changes, please ensure that your code passes all quality checks:
+This project uses **Husky + lint-staged** to automatically enforce code quality. When you clone the repository and run `pnpm install`, git hooks are automatically set up for you.
 
-### 1. Lint Check
+### Pre-commit Checks (Fast)
 
-Run the linter to check for code style and potential issues:
+On every commit, the following **fast checks** run automatically on staged files only:
 
-```bash
-npm run lint
-```
+- **ESLint with auto-fix** - Fixes code style issues automatically where possible
+- **TypeScript type checking** - Ensures no type errors in changed files
 
-### 2. Type Check
+These checks typically take **5-15 seconds** and will auto-fix issues when possible.
 
-Ensure there are no TypeScript errors:
+### Pre-push Checks (Comprehensive)
 
-```bash
-npm run typecheck
-```
+Before pushing to the remote repository, **comprehensive checks** run on the entire codebase:
 
-### 3. Build Check
+- **Full type check** - `pnpm run typecheck`
+- **Full test suite** - `pnpm run test`
+- **Full build check** - `pnpm run build`
 
-Verify that the project builds successfully:
+These checks ensure nothing is broken before sharing your changes.
 
-```bash
-npm run build
-```
+### Manual Commands
 
-### 4. Test Suite
-
-Run the test suite to ensure all tests pass:
+You can also run these commands manually at any time:
 
 ```bash
-npm run test
+# Lint and auto-fix
+pnpm run lint:fix
+
+# Type checking
+pnpm run typecheck
+
+# Run tests
+pnpm run test
+
+# Build project
+pnpm run build
 ```
 
-**All of these checks must pass before submitting a pull request.** This ensures code quality and prevents breaking changes from being introduced into the codebase.
+### Bypassing Hooks (When Needed)
+
+If you need to bypass the hooks temporarily (not recommended):
+
+```bash
+# Skip pre-commit checks
+git commit --no-verify
+
+# Skip pre-push checks
+git push --no-verify
+```
+
+**All quality checks must pass before submitting a pull request.** The automated hooks ensure code quality and prevent breaking changes from being introduced into the codebase.
