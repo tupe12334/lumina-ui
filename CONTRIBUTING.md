@@ -21,3 +21,41 @@ lumina-ui/
 ```
 
 This structure promotes separation of concerns, testability, and maintainability while making it easy for contributors to understand where different types of code should be placed.
+
+## Before Submitting Changes
+
+Before submitting any changes, please ensure that your code passes all quality checks:
+
+### 1. Lint Check
+
+Run the linter to check for code style and potential issues:
+
+```bash
+npm run lint
+```
+
+### 2. Type Check
+
+Ensure there are no TypeScript errors:
+
+```bash
+npm run typecheck
+```
+
+### 3. Build Check
+
+Verify that the project builds successfully:
+
+```bash
+npm run build
+```
+
+### 4. Test Suite
+
+Run the test suite to ensure all tests pass:
+
+```bash
+npm run test
+```
+
+**All of these checks must pass before submitting a pull request.** This ensures code quality and prevents breaking changes from being introduced into the codebase.
