@@ -103,17 +103,10 @@ export function createFilePreview(file: File): Promise<string> {
   })
 }
 
+import { saveAs } from 'file-saver'
+
 export function downloadFile(file: File, fileName?: string): void {
-  const url = URL.createObjectURL(file)
-  const link = document.createElement('a')
-
-  link.href = url
-  link.download = fileName || file.name
-  document.body.appendChild(link)
-  link.click()
-
-  document.body.removeChild(link)
-  URL.revokeObjectURL(url)
+  saveAs(file, fileName || file.name)
 }
 
 export function copyToClipboard(text: string): Promise<void> {
