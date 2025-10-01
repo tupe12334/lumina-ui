@@ -22,6 +22,25 @@ lumina-ui/
 
 This structure promotes separation of concerns, testability, and maintainability while making it easy for contributors to understand where different types of code should be placed.
 
+## Development Guidelines
+
+### Prefer Libraries Over Custom Logic
+
+When implementing functionality, **always prefer using existing libraries over writing custom logic**:
+
+1. **Research first** - Check if a well-maintained library already solves your problem
+2. **Evaluate thoroughly** - Consider bundle size, maintenance status, and TypeScript support
+3. **Use established solutions** - Prefer libraries that are widely adopted and actively maintained
+4. **Avoid reinventing** - Don't write custom implementations for common patterns
+
+**Examples:**
+- Use `clsx` for conditional CSS classes instead of custom string concatenation
+- Use `date-fns` or `dayjs` for date manipulation instead of custom date logic
+- Use `zod` for schema validation instead of custom validation functions
+- Use `react-hook-form` for form handling instead of custom form state management
+
+This approach reduces bugs, improves maintainability, and leverages community-tested solutions.
+
 ## Automated Quality Checks
 
 This project uses **Husky + lint-staged** to automatically enforce code quality. When you clone the repository and run `pnpm install`, git hooks are automatically set up for you.
