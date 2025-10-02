@@ -26,7 +26,7 @@ describe('FileListItem', () => {
     render(<FileListItem {...defaultProps} />)
 
     expect(screen.getByText('test.txt')).toBeInTheDocument()
-    expect(screen.getByText(/Bytes/)).toBeInTheDocument()
+    expect(screen.getByText(/B$/)).toBeInTheDocument()
   })
 
   test('shows file status', () => {

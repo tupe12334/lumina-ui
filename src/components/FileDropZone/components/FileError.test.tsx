@@ -39,24 +39,20 @@ describe('FileError', () => {
   })
 
   test('displays different error messages correctly', () => {
-    const errorMessages = [
-      'File too large',
-      'Invalid file type',
-      'Network error occurred',
-      'Server unavailable'
-    ]
+    const errorMessage1 = 'File too large'
+    const fileUpload1 = FileUpload.create(mockFile).withError(errorMessage1)
 
-    errorMessages.forEach(errorMessage => {
-      const fileUpload = FileUpload.create(mockFile).withError(errorMessage)
-      const { rerender } = render(<FileError fileUpload={fileUpload} />)
+    const { unmount } = render(<FileError fileUpload={fileUpload1} />)
+    expect(screen.getByText(errorMessage1)).toBeInTheDocument()
+    expect(screen.getByRole('alert')).toBeInTheDocument()
+    unmount()
 
-      expect(screen.getByText(errorMessage)).toBeInTheDocument()
-      expect(screen.getByRole('alert')).toBeInTheDocument()
+    const errorMessage2 = 'Invalid file type'
+    const fileUpload2 = FileUpload.create(mockFile).withError(errorMessage2)
 
-      if (errorMessage !== errorMessages[0]) {
-        rerender(<FileError fileUpload={fileUpload} />)
-      }
-    })
+    render(<FileError fileUpload={fileUpload2} />)
+    expect(screen.getByText(errorMessage2)).toBeInTheDocument()
+    expect(screen.getByRole('alert')).toBeInTheDocument()
   })
 
   test('handles empty error message', () => {

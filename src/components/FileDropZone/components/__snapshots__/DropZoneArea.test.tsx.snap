@@ -40,20 +40,28 @@ exports[`DropZoneArea > renders correctly with default props 1`] = `
     </svg>
     <h3
       class="_title_3af3de"
-    />
+    >
+      Upload Files
+    </h3>
     <p
       class="_description_3af3de"
-    />
+    >
+      Drag and drop your files here
+    </p>
     <button
       aria-label="Browse files"
       class="_button_3af3de"
       type="button"
-    />
+    >
+      Browse Files
+    </button>
     <p
       class="_description_3af3de"
     >
       Max 
+      10
        files • Max 
+      10
       MB per file
     </p>
   </div>

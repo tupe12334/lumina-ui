@@ -1,5 +1,6 @@
 export * from './Button'
 export * from './BooleanAnswer'
 export * from './FileDropZone'
+export * from './ProgressBase'
 export * from './Selector'
 export * from './LanguageSelector'

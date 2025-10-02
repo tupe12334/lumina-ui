@@ -52,7 +52,9 @@ exports[`DropZoneContent > renders correctly with default props 1`] = `
     class="_description_3af3de"
   >
     Max 
+    5
      files • Max 
+    10
     MB per file
   </p>
 </div>

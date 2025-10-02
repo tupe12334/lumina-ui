@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FilesListHeader > renders correctly with default props 1`] = `
+<div
+  class="_filesHeader_3af3de"
+>
+  <h3
+    class="_filesTitle_3af3de"
+  >
+    2
+     
+    files
+  </h3>
+  <button
+    aria-label="Clear all files"
+    class="_clearButton_3af3de"
+    type="button"
+  >
+    Clear all
+  </button>
+</div>
+`;

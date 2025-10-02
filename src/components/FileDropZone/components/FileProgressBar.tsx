@@ -1,7 +1,6 @@
 import React from 'react'
 import { FileUpload } from '../domain/FileUpload'
-import { cn } from '../infrastructure/cn'
-import styles from '../FileDropZone.module.css'
+import { ProgressBase } from '../../ProgressBase'
 
 interface FileProgressBarProps {
   fileUpload: FileUpload
@@ -14,16 +13,18 @@ export const FileProgressBar: React.FC<FileProgressBarProps> = ({ fileUpload }) 
     return null
   }
 
+  const getVariant = () => {
+    if (status.isFailed()) return 'error'
+    if (status.isCompleted()) return 'success'
+    return 'default'
+  }
+
   return (
-    <div className={styles.progressBar} role="progressbar" aria-valuenow={fileUpload.getProgress()} aria-valuemin={0} aria-valuemax={100}>
-      <div
-        className={cn(
-          styles.progressFill,
-          status.isCompleted() && styles.completed,
-          status.isFailed() && styles.failed
-        )}
-        style={{ width: `${fileUpload.getProgress()}%` }}
-      />
-    </div>
+    <ProgressBase
+      value={fileUpload.getProgress()}
+      variant={getVariant()}
+      size="small"
+      aria-label={`File upload progress: ${fileUpload.getProgress()}%`}
+    />
   )
 }

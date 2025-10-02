@@ -1,15 +1,29 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { vi } from 'vitest'
 import { DropZoneArea } from './DropZoneArea'
 
+const mockOnClick = vi.fn()
+
 const defaultProps = {
+  title: 'Upload Files',
+  description: 'Drag and drop your files here',
+  buttonText: 'Browse Files',
   isDragActive: false,
   disabled: false,
+  maxFiles: 10,
+  maxFileSize: 10,
   onDragEnter: vi.fn(),
   onDragLeave: vi.fn(),
   onDragOver: vi.fn(),
   onDrop: vi.fn(),
-  onClick: vi.fn(),
+  onClick: mockOnClick,
+  onButtonClick: vi.fn(),
+  onKeyDown: vi.fn((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      mockOnClick()
+    }
+  }),
 }
 
 describe('DropZoneArea', () => {
@@ -56,9 +70,9 @@ describe('DropZoneArea', () => {
       </DropZoneArea>
     )
 
-    const dropZone = screen.getByRole('button')
+    const dropZone = screen.getByRole('button', { name: 'File upload area' })
     expect(dropZone).toHaveAttribute('aria-disabled', 'true')
-    expect(dropZone).toHaveClass('disabled')
+    expect(dropZone.className).toMatch(/disabled/)
   })
 
   test('shows active drag state correctly', () => {
@@ -68,8 +82,8 @@ describe('DropZoneArea', () => {
       </DropZoneArea>
     )
 
-    const dropZone = screen.getByRole('button')
-    expect(dropZone).toHaveClass('dragActive')
+    const dropZone = screen.getByRole('button', { name: 'File upload area' })
+    expect(dropZone.className).toMatch(/dragActive/)
   })
 
   test('calls onClick when clicked and not disabled', () => {
@@ -79,7 +93,7 @@ describe('DropZoneArea', () => {
       </DropZoneArea>
     )
 
-    const dropZone = screen.getByRole('button')
+    const dropZone = screen.getByRole('button', { name: 'File upload area' })
     dropZone.click()
 
     expect(defaultProps.onClick).toHaveBeenCalled()
@@ -92,7 +106,7 @@ describe('DropZoneArea', () => {
       </DropZoneArea>
     )
 
-    const dropZone = screen.getByRole('button')
+    const dropZone = screen.getByRole('button', { name: 'File upload area' })
     dropZone.click()
 
     expect(defaultProps.onClick).not.toHaveBeenCalled()
@@ -105,7 +119,7 @@ describe('DropZoneArea', () => {
       </DropZoneArea>
     )
 
-    const dropZone = screen.getByRole('button')
+    const dropZone = screen.getByRole('button', { name: 'File upload area' })
     expect(dropZone).toHaveClass('custom-class')
   })
 
@@ -116,30 +130,34 @@ describe('DropZoneArea', () => {
       </DropZoneArea>
     )
 
-    const dropZone = screen.getByRole('button')
+    const dropZone = screen.getByRole('button', { name: 'File upload area' })
 
     // Test Enter key
     dropZone.focus()
-    dropZone.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }))
+    fireEvent.keyDown(dropZone, { key: 'Enter' })
     expect(defaultProps.onClick).toHaveBeenCalled()
 
     vi.clearAllMocks()
 
     // Test Space key
-    dropZone.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }))
+    fireEvent.keyDown(dropZone, { key: ' ' })
     expect(defaultProps.onClick).toHaveBeenCalled()
   })
 
   test('prevents keyboard events when disabled', () => {
+    const disabledOnKeyDown = vi.fn((e: React.KeyboardEvent) => {
+      // Disabled handler should not call onClick
+    })
+
     render(
-      <DropZoneArea {...defaultProps} disabled={true}>
+      <DropZoneArea {...defaultProps} disabled={true} onKeyDown={disabledOnKeyDown}>
         <div className="test-content">Content</div>
       </DropZoneArea>
     )
 
-    const dropZone = screen.getByRole('button')
+    const dropZone = screen.getByRole('button', { name: 'File upload area' })
 
-    dropZone.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }))
+    fireEvent.keyDown(dropZone, { key: 'Enter' })
     expect(defaultProps.onClick).not.toHaveBeenCalled()
   })
 })

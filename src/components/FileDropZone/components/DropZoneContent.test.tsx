@@ -7,10 +7,8 @@ const defaultProps = {
   description: 'Drag and drop your files here, or click to browse',
   buttonText: 'Browse Files',
   icon: undefined,
-  validationRules: {
-    getMaxFileSizeMB: () => 10,
-    getConfig: () => ({ maxFiles: 5 })
-  },
+  maxFiles: 5,
+  maxFileSize: 10,
   onButtonClick: vi.fn(),
   disabled: false,
 }
@@ -77,15 +75,11 @@ describe('DropZoneContent', () => {
 
 
   test('shows different validation rules correctly', () => {
-    const customValidationRules = {
-      getMaxFileSizeMB: () => 25,
-      getConfig: () => ({ maxFiles: 10 })
-    }
-
     render(
       <DropZoneContent
         {...defaultProps}
-        validationRules={customValidationRules}
+        maxFiles={10}
+        maxFileSize={25}
       />
     )
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FileUpload } from '../domain/FileUpload'
 import { FileListItem } from './FileListItem'
+import { FilesListHeader } from './FilesListHeader/FilesListHeader'
 import styles from '../FileDropZone.module.css'
 
 interface FilesListProps {
@@ -18,28 +19,17 @@ export const FilesList: React.FC<FilesListProps> = ({
   onClearAll,
   showClearAll
 }) => {
-  const shouldShowClearAll = showClearAll !== false
   if (files.length === 0) {
     return null
   }
 
   return (
     <div className={styles.filesList}>
-      <div className={styles.filesHeader}>
-        <h3 className={styles.filesTitle}>
-          {files.length} {files.length === 1 ? 'file' : 'files'}
-        </h3>
-        {shouldShowClearAll && (
-          <button
-            type="button"
-            className={styles.clearButton}
-            onClick={onClearAll}
-            aria-label="Clear all files"
-          >
-            Clear all
-          </button>
-        )}
-      </div>
+      <FilesListHeader
+        fileCount={files.length}
+        onClearAll={onClearAll}
+        showClearAll={showClearAll}
+      />
 
       <div className={styles.filesList} role="list" aria-label="Uploaded files">
         {files.map((fileUpload) => (

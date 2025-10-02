@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FileInfo > renders correctly with default file 1`] = `
+<div
+  class="_fileInfo_3af3de"
+>
+  <p
+    class="_fileName_3af3de"
+    title="test.txt"
+  >
+    test.txt
+  </p>
+  <div
+    class="_fileDetails_3af3de"
+  >
+    <span
+      class="_fileSize_3af3de"
+    >
+      12 B
+    </span>
+    <div
+      aria-label="File status: pending"
+      class="_fileStatus_3af3de _pending_3af3de"
+      role="status"
+    >
+      pending
+    </div>
+  </div>
+</div>
+`;
