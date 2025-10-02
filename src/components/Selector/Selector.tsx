@@ -76,7 +76,7 @@ export const Selector = React.forwardRef<HTMLDivElement, SimpleSelectorProps>(
         </button>
 
         {isOpen && (
-          <ul ref={listRef} className={clsx(styles.listbox)}>
+          <ul ref={listRef} className={clsx(styles.listbox)} role="listbox">
             {options.map((option) => (
               <li
                 key={option.value}
