@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CardHeader > renders correctly with default props 1`] = `
+<div
+  class="question-card-header"
+>
+  <div
+    class="question-card-header-left"
+  >
+    What is your favorite color?
+    <span
+      class="test-badge"
+    >
+      Badge
+    </span>
+  </div>
+  <div
+    class="question-card-header-right desktop"
+  >
+    <span
+      class="test-progress"
+    >
+      Progress
+    </span>
+  </div>
+</div>
+`;
