@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 import { FileActions } from './FileActions'
 import { FileUpload } from '../domain/FileUpload'
 
@@ -6,13 +7,13 @@ const mockFile = new File(['test content'], 'test.txt', { type: 'text/plain' })
 
 const defaultProps = {
   fileUpload: FileUpload.create(mockFile, 'test-id'),
-  onRemoveFile: jest.fn(),
-  onRetryFile: jest.fn(),
+  onRemoveFile: vi.fn(),
+  onRetryFile: vi.fn(),
 }
 
 describe('FileActions', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   test('renders correctly with default props', () => {

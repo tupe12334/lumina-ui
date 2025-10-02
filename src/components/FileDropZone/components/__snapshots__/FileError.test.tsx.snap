@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FileError > renders correctly with error message 1`] = `
+<div
+  class="_errorItem_3af3de"
+  role="alert"
+>
+  <p
+    class="_errorMessage_3af3de"
+  >
+    Upload failed
+  </p>
+</div>
+`;

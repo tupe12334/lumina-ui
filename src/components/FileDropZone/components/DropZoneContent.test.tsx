@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 import { DropZoneContent } from './DropZoneContent'
 
 const defaultProps = {
@@ -10,13 +11,13 @@ const defaultProps = {
     getMaxFileSizeMB: () => 10,
     getConfig: () => ({ maxFiles: 5 })
   },
-  onButtonClick: jest.fn(),
+  onButtonClick: vi.fn(),
   disabled: false,
 }
 
 describe('DropZoneContent', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   test('renders correctly with default props', () => {

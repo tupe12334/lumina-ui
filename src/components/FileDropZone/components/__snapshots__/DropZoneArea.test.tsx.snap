@@ -1,0 +1,66 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DropZoneArea > renders correctly with default props 1`] = `
+<div
+  aria-disabled="false"
+  aria-label="File upload area"
+  class="_dropzone_3af3de"
+  role="button"
+  tabindex="0"
+>
+  <div
+    class="_content_3af3de"
+  >
+    <svg
+      class="_icon_3af3de"
+      fill="none"
+      height="48"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="48"
+    >
+      <path
+        class="_icon_3af3de"
+        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+      />
+      <polyline
+        class="_icon_3af3de"
+        points="7,10 12,5 17,10"
+      />
+      <line
+        class="_icon_3af3de"
+        x1="12"
+        x2="12"
+        y1="5"
+        y2="15"
+      />
+    </svg>
+    <h3
+      class="_title_3af3de"
+    />
+    <p
+      class="_description_3af3de"
+    />
+    <button
+      aria-label="Browse files"
+      class="_button_3af3de"
+      type="button"
+    />
+    <p
+      class="_description_3af3de"
+    >
+      Max 
+       files • Max 
+      MB per file
+    </p>
+  </div>
+  <div
+    class="test-content"
+  >
+    Drop zone content
+  </div>
+</div>
+`;

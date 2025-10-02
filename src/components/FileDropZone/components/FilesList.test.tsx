@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 import { FilesList } from './FilesList'
 import { FileUpload } from '../domain/FileUpload'
 
@@ -11,14 +12,14 @@ const mockFiles = [
 
 const defaultProps = {
   files: mockFiles,
-  onRemoveFile: jest.fn(),
-  onRetryFile: jest.fn(),
-  onClearAll: jest.fn(),
+  onRemoveFile: vi.fn(),
+  onRetryFile: vi.fn(),
+  onClearAll: vi.fn(),
 }
 
 describe('FilesList', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   test('renders correctly with files', () => {

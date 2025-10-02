@@ -1,19 +1,20 @@
 import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 import { DropZoneArea } from './DropZoneArea'
 
 const defaultProps = {
   isDragActive: false,
   disabled: false,
-  onDragEnter: jest.fn(),
-  onDragLeave: jest.fn(),
-  onDragOver: jest.fn(),
-  onDrop: jest.fn(),
-  onClick: jest.fn(),
+  onDragEnter: vi.fn(),
+  onDragLeave: vi.fn(),
+  onDragOver: vi.fn(),
+  onDrop: vi.fn(),
+  onClick: vi.fn(),
 }
 
 describe('DropZoneArea', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   test('renders correctly with default props', () => {
@@ -122,7 +123,7 @@ describe('DropZoneArea', () => {
     dropZone.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }))
     expect(defaultProps.onClick).toHaveBeenCalled()
 
-    jest.clearAllMocks()
+    vi.clearAllMocks()
 
     // Test Space key
     dropZone.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }))
