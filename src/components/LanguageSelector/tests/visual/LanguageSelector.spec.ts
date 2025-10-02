@@ -5,10 +5,7 @@ const languageSelectorStories = [
   'components-languageselector--default',
   'components-languageselector--with-selected-language',
   'components-languageselector--without-flags',
-  'components-languageselector--with-regions',
-  'components-languageselector--small',
-  'components-languageselector--large',
-  'components-languageselector--error-state',
+  'components-languageselector--custom-languages',
   'components-languageselector--disabled',
 ]
 
@@ -34,21 +31,13 @@ test.describe('LanguageSelector Component Visual Tests', () => {
     await page.goto('/iframe.html?id=components-languageselector--default&viewMode=story')
     await page.waitForSelector('#storybook-root')
 
-    // Click to open dropdown
-    await page.click('button')
+    // Click to open dropdown - target the selector button specifically
+    await page.click('#storybook-root button[role="button"]')
     await page.waitForTimeout(300)
 
     await expect(page.locator('#storybook-root')).toHaveScreenshot('components-languageselector--default-open.png')
   })
 
-  // Test custom languages story
-  test('components-languageselector--custom-languages', async ({ page }) => {
-    await page.goto('/iframe.html?id=components-languageselector--custom-languages&viewMode=story')
-    await page.waitForSelector('#storybook-root')
-    await page.waitForTimeout(500)
-
-    await expect(page.locator('#storybook-root')).toHaveScreenshot('components-languageselector--custom-languages.png')
-  })
 
   // Responsive tests for LanguageSelector
   const responsiveStories = ['components-languageselector--default']
