@@ -1,5 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { LanguageSelector } from './LanguageSelector'
+import { LanguageSelector, Language } from './LanguageSelector'
+
+const defaultLanguages: Language[] = [
+  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
+  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
+  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
+  { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇵🇹' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺' },
+  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
+  { code: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷' },
+  { code: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
+]
 
 const meta: Meta<typeof LanguageSelector> = {
   title: 'Components/LanguageSelector',
@@ -9,15 +22,10 @@ const meta: Meta<typeof LanguageSelector> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
-    variant: {
-      control: 'select',
-      options: ['default', 'error', 'success'],
-    },
     disabled: {
+      control: 'boolean',
+    },
+    showFlags: {
       control: 'boolean',
     },
   },
@@ -28,12 +36,14 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
+    languages: defaultLanguages,
     placeholder: 'Select a language',
   },
 }
 
 export const WithSelectedLanguage: Story = {
   args: {
+    languages: defaultLanguages,
     value: 'en',
     placeholder: 'Select a language',
   },
@@ -41,95 +51,31 @@ export const WithSelectedLanguage: Story = {
 
 export const WithoutFlags: Story = {
   args: {
+    languages: defaultLanguages,
     placeholder: 'Select a language',
-    config: {
-      showFlags: false,
-    },
-  },
-}
-
-export const WithRegions: Story = {
-  args: {
-    placeholder: 'Select a language',
-    config: {
-      showFlags: true,
-      showRegions: true,
-    },
-  },
-}
-
-export const WithRegionInLabel: Story = {
-  args: {
-    placeholder: 'Select a language',
-    config: {
-      showFlags: true,
-      includeRegionInLabel: true,
-    },
-  },
-}
-
-export const Searchable: Story = {
-  args: {
-    placeholder: 'Search for a language',
-    config: {
-      searchable: true,
-      showFlags: true,
-    },
-  },
-}
-
-export const Clearable: Story = {
-  args: {
-    value: 'fr',
-    placeholder: 'Select a language',
-    config: {
-      clearable: true,
-      showFlags: true,
-    },
+    showFlags: false,
   },
 }
 
 export const CustomLanguages: Story = {
   args: {
+    languages: [
+      { code: 'js', name: 'JavaScript', nativeName: 'JavaScript' },
+      { code: 'ts', name: 'TypeScript', nativeName: 'TypeScript' },
+      { code: 'py', name: 'Python', nativeName: 'Python' },
+      { code: 'java', name: 'Java', nativeName: 'Java' },
+      { code: 'cpp', name: 'C++', nativeName: 'C++' },
+      { code: 'rust', name: 'Rust', nativeName: 'Rust' },
+      { code: 'go', name: 'Go', nativeName: 'Go' },
+    ],
     placeholder: 'Select a programming language',
-    config: {
-      showFlags: false,
-      customLanguages: [
-        { code: 'js', name: 'JavaScript', nativeName: 'JavaScript' },
-        { code: 'ts', name: 'TypeScript', nativeName: 'TypeScript' },
-        { code: 'py', name: 'Python', nativeName: 'Python' },
-        { code: 'java', name: 'Java', nativeName: 'Java' },
-        { code: 'cpp', name: 'C++', nativeName: 'C++' },
-        { code: 'rust', name: 'Rust', nativeName: 'Rust' },
-        { code: 'go', name: 'Go', nativeName: 'Go' },
-      ],
-    },
-  },
-}
-
-export const Small: Story = {
-  args: {
-    size: 'sm',
-    placeholder: 'Select a language',
-  },
-}
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
-    placeholder: 'Select a language',
-  },
-}
-
-export const ErrorState: Story = {
-  args: {
-    variant: 'error',
-    placeholder: 'Select a language',
+    showFlags: false,
   },
 }
 
 export const Disabled: Story = {
   args: {
+    languages: defaultLanguages,
     disabled: true,
     placeholder: 'Select a language',
   },
