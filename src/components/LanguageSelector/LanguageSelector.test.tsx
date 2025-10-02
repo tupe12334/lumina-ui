@@ -70,3 +70,63 @@ test('LanguageSelector renders correctly with custom className', () => {
   )
   expect(container.firstChild).toMatchSnapshot()
 })
+
+test('LanguageSelector renders correctly in compact mode with flags', () => {
+  const { container } = render(
+    <LanguageSelector
+      languages={mockLanguages}
+      displayMode="compact"
+      showFlags={true}
+    />
+  )
+  expect(container.firstChild).toMatchSnapshot()
+})
+
+test('LanguageSelector renders correctly in compact mode without flags', () => {
+  const { container } = render(
+    <LanguageSelector
+      languages={mockLanguages}
+      displayMode="compact"
+      showFlags={false}
+    />
+  )
+  expect(container.firstChild).toMatchSnapshot()
+})
+
+test('LanguageSelector shows compact format options when displayMode is compact', () => {
+  render(
+    <LanguageSelector
+      languages={mockLanguages}
+      displayMode="compact"
+      showFlags={true}
+    />
+  )
+
+  const trigger = screen.getByRole('button')
+  fireEvent.click(trigger)
+
+  // Should show compact format: ISO code + emoji (e.g., "EN🇺🇸")
+  expect(screen.getByText(/EN/)).toBeInTheDocument()
+  expect(screen.getByText(/ES/)).toBeInTheDocument()
+  expect(screen.getByText(/FR/)).toBeInTheDocument()
+})
+
+test('LanguageSelector compact mode calls onChange with correct language code', () => {
+  const handleChange = vi.fn()
+  render(
+    <LanguageSelector
+      languages={mockLanguages}
+      displayMode="compact"
+      showFlags={false}
+      onChange={handleChange}
+    />
+  )
+
+  const trigger = screen.getByRole('button')
+  fireEvent.click(trigger)
+
+  const option = screen.getByText('EN')
+  fireEvent.click(option)
+
+  expect(handleChange).toHaveBeenCalledWith('en')
+})

@@ -8,6 +8,8 @@ export interface Language {
   nativeName: string
 }
 
+export type LanguageDisplayMode = 'full' | 'compact'
+
 export interface SimpleLanguageSelectorProps {
   languages: Language[]
   value?: string
@@ -15,6 +17,7 @@ export interface SimpleLanguageSelectorProps {
   disabled?: boolean
   className?: string
   showFlags?: boolean
+  displayMode?: LanguageDisplayMode
   onChange?: (languageCode: string) => void
 }
 
@@ -34,7 +37,26 @@ const getCountryCodeFromLanguage = (languageCode: string): string => {
   return languageToCountryMap.get(languageCode) || languageCode.toUpperCase()
 }
 
-const createLanguageOption = (language: Language, showFlags: boolean): SelectorOption => {
+const createLanguageOption = (
+  language: Language,
+  showFlags: boolean,
+  displayMode: LanguageDisplayMode
+): SelectorOption => {
+  if (displayMode === 'compact') {
+    let label = language.code.toUpperCase()
+
+    if (showFlags) {
+      const languageCountryCode = getCountryCodeFromLanguage(language.code)
+      const flagData = countryCode(languageCountryCode)
+      if (flagData && flagData.emoji) {
+        label = `${label}${flagData.emoji}`
+      }
+    }
+
+    return { value: language.code, label }
+  }
+
+  // Full display mode (existing behavior)
   let label = `${language.name}`
 
   if (language.nativeName !== language.name) {
@@ -61,11 +83,13 @@ export const LanguageSelector = React.forwardRef<HTMLDivElement, SimpleLanguageS
       disabled,
       className,
       showFlags,
+      displayMode,
       onChange
     } = props
 
+    const finalDisplayMode = displayMode || 'full'
     const shouldShowFlags = showFlags !== false
-    const options = languages.map((language) => createLanguageOption(language, shouldShowFlags))
+    const options = languages.map((language) => createLanguageOption(language, shouldShowFlags, finalDisplayMode))
 
     return (
       <Selector

@@ -28,6 +28,10 @@ const meta: Meta<typeof LanguageSelector> = {
     showFlags: {
       control: 'boolean',
     },
+    displayMode: {
+      control: 'select',
+      options: ['full', 'compact'],
+    },
   },
 }
 
@@ -78,5 +82,43 @@ export const Disabled: Story = {
     languages: defaultLanguages,
     disabled: true,
     placeholder: 'Select a language',
+  },
+}
+
+export const CompactWithFlags: Story = {
+  name: 'Compact Display with Flags',
+  args: {
+    languages: defaultLanguages,
+    displayMode: 'compact',
+    showFlags: true,
+    placeholder: 'Select language',
+  },
+}
+
+export const CompactWithoutFlags: Story = {
+  name: 'Compact Display without Flags',
+  args: {
+    languages: defaultLanguages,
+    displayMode: 'compact',
+    showFlags: false,
+    placeholder: 'Select language',
+  },
+}
+
+export const CompactProgrammingLanguages: Story = {
+  name: 'Compact Programming Languages',
+  args: {
+    languages: [
+      { code: 'js', name: 'JavaScript', nativeName: 'JavaScript' },
+      { code: 'ts', name: 'TypeScript', nativeName: 'TypeScript' },
+      { code: 'py', name: 'Python', nativeName: 'Python' },
+      { code: 'java', name: 'Java', nativeName: 'Java' },
+      { code: 'cpp', name: 'C++', nativeName: 'C++' },
+      { code: 'rust', name: 'Rust', nativeName: 'Rust' },
+      { code: 'go', name: 'Go', nativeName: 'Go' },
+    ],
+    displayMode: 'compact',
+    showFlags: false,
+    placeholder: 'Select language',
   },
 }

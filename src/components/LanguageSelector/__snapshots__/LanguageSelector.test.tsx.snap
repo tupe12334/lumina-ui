@@ -1,5 +1,51 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`LanguageSelector renders correctly in compact mode with flags 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly in compact mode without flags 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
 exports[`LanguageSelector renders correctly when disabled 1`] = `
 <div
   class="_selector_729a27"
