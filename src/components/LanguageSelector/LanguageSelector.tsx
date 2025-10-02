@@ -31,7 +31,7 @@ export const LanguageSelector = React.forwardRef<HTMLDivElement, SimpleLanguageS
       onChange
     } = props
 
-    const finalLanguages = languages
+    const finalLanguages = languages || []
     const shouldShowFlags = showFlags !== false
 
     const options: SelectorOption[] = finalLanguages.map((language) => {
