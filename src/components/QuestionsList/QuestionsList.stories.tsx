@@ -16,13 +16,13 @@ type Story = StoryObj<typeof meta>;
 const mockQuestions = [
   {
     id: '1',
-    text: { en_text: 'What is React?', he_text: 'מה זה React?' },
+    text: 'What is React?',
     type: 'selection',
     validationStatus: 'approved',
   },
   {
     id: '2',
-    text: { en_text: 'What is TypeScript?', he_text: 'מה זה TypeScript?' },
+    text: 'What is TypeScript?',
     type: 'boolean',
     validationStatus: 'approved',
   },
@@ -40,7 +40,6 @@ const mockStats = {
 export const Default: Story = {
   args: {
     questions: mockQuestions,
-    language: 'en',
     isMobile: false,
     getStatsForQuestion: () => mockStats,
     hasMore: false,
@@ -49,7 +48,7 @@ export const Default: Story = {
     onLoadMore: null,
     renderQuestionCard: ({ question }) => (
       <div style={{ padding: '16px', border: '1px solid #ccc', borderRadius: '8px' }}>
-        {question.text.en_text}
+        {question.text}
       </div>
     ),
     renderInfiniteScrollContainer: null,

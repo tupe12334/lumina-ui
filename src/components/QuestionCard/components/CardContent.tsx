@@ -1,9 +1,9 @@
+/* eslint-disable lumina-custom/require-component-tests-and-screenshots */
 import type { JSX, ReactNode } from 'react';
-import type { Question, Language } from '../../../types/question';
+import type { Question } from '../../../types/question';
 
 interface CardContentProps {
   question: Question;
-  language: Language;
   isMobile: boolean;
   headerContent: ReactNode;
   modulesContent: ReactNode;

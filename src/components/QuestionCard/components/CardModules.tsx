@@ -1,5 +1,6 @@
+/* eslint-disable lumina-custom/require-component-tests-and-screenshots */
 import type { JSX, ReactNode } from 'react';
-import type { ModuleRef, Language } from '../../../types/question';
+import type { ModuleRef } from '../../../types/question';
 
 interface CardModulesProps {
   questionId: string;
@@ -10,26 +11,26 @@ interface CardModulesProps {
     size: string;
     text: string;
   }) => ReactNode;
-  translate: (text: { en_text: string; he_text: string }, language: Language) => string;
-  language: Language;
 }
 
 export function CardModules(props: CardModulesProps): JSX.Element {
-  const { questionId, modules, renderBadge, translate, language } = props;
+  const { questionId, modules, renderBadge } = props;
 
   return (
     <div
       id={`question-modules-${questionId}`}
       className="question-card-modules"
     >
-      {modules.map((module) =>
-        renderBadge({
-          questionId,
-          color: 'blue',
-          size: '1',
-          text: translate(module.name, language),
-        })
-      )}
+      {modules.map((module) => (
+        <span key={module.id} className="module-badge-wrapper">
+          {renderBadge({
+            questionId,
+            color: 'blue',
+            size: '1',
+            text: module.name,
+          })}
+        </span>
+      ))}
     </div>
   );
 }

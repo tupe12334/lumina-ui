@@ -1,13 +1,11 @@
 import type { ReactNode } from 'react';
 import type {
   Question,
-  Language,
   QuestionSubmissionStats,
 } from '../../types/question';
 
 export interface QuestionsListProps {
   questions: Question[];
-  language: Language;
   isMobile: boolean;
   getStatsForQuestion: (questionId: string) => QuestionSubmissionStats;
   hasMore: boolean;
@@ -16,7 +14,6 @@ export interface QuestionsListProps {
   onLoadMore: (() => void) | null;
   renderQuestionCard: (props: {
     question: Question;
-    language: Language;
     isMobile: boolean;
     submissionStats: QuestionSubmissionStats;
   }) => ReactNode;

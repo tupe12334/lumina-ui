@@ -1,14 +1,12 @@
 import type { ReactNode } from 'react';
 import type {
   Question,
-  Language,
   QuestionSubmission,
   QuestionSubmissionStats,
 } from '../../types/question';
 
 export interface QuestionCardProps {
   question: Question;
-  language: Language;
   isMobile: boolean;
   submissionStats: QuestionSubmissionStats | null;
   isAuthenticated: boolean;
@@ -34,12 +32,10 @@ export interface QuestionCardProps {
     questionId: string;
     submissions: QuestionSubmission[];
     stats: QuestionSubmissionStats | null;
-    language: Language;
     size: string;
     showTooltip: boolean;
     scoreOnly: boolean;
     mode: string;
   }) => ReactNode) | null;
-  translate: (text: { en_text: string; he_text: string }, language: Language) => string;
   t: (key: string, options: Record<string, unknown> | null) => string;
 }

@@ -6,7 +6,7 @@ import type { QuestionsListProps } from './types';
 describe('QuestionsList', () => {
   const mockQuestion = {
     id: 'q1',
-    text: { en_text: 'Test Question', he_text: 'שאלת בדיקה' },
+    text: 'Test Question',
     type: 'selection',
     validationStatus: 'approved',
   };
@@ -22,14 +22,13 @@ describe('QuestionsList', () => {
 
   const defaultProps: QuestionsListProps = {
     questions: [mockQuestion],
-    language: 'en',
     isMobile: false,
     getStatsForQuestion: vi.fn(() => mockStats),
     hasMore: false,
     isLoading: false,
     isLoadingMore: false,
     onLoadMore: null,
-    renderQuestionCard: ({ question }) => <div className="card">{question.text.en_text}</div>,
+    renderQuestionCard: ({ question }) => <div className="card">{question.text}</div>,
     renderInfiniteScrollContainer: null,
   };
 

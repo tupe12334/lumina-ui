@@ -6,14 +6,13 @@ import type { QuestionCardProps } from './types';
 describe('QuestionCard', () => {
   const mockQuestion = {
     id: 'q1',
-    text: { en_text: 'Test Question', he_text: 'שאלת בדיקה' },
+    text: 'Test Question',
     type: 'selection',
     validationStatus: 'approved',
   };
 
   const defaultProps: QuestionCardProps = {
     question: mockQuestion,
-    language: 'en',
     isMobile: false,
     submissionStats: null,
     isAuthenticated: false,
@@ -22,7 +21,6 @@ describe('QuestionCard', () => {
     renderText: ({ text }) => <span className="text">{text}</span>,
     renderBadge: ({ text }) => <span className="badge">{text}</span>,
     renderProgressIndicator: null,
-    translate: (text) => text.en_text,
     t: (key) => key,
   };
 
@@ -51,7 +49,7 @@ describe('QuestionCard', () => {
       ...defaultProps,
       question: {
         ...mockQuestion,
-        modules: [{ id: 'm1', name: { en_text: 'Math', he_text: 'מתמטיקה' } }],
+        modules: [{ id: 'm1', name: 'Math' }],
       },
     };
     render(<QuestionCard {...propsWithModules} />);

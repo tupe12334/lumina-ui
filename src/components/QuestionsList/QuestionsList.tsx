@@ -4,7 +4,6 @@ import type { QuestionsListProps } from './types';
 export function QuestionsList(props: QuestionsListProps): JSX.Element {
   const {
     questions,
-    language,
     isMobile,
     getStatsForQuestion,
     hasMore,
@@ -31,7 +30,6 @@ export function QuestionsList(props: QuestionsListProps): JSX.Element {
           >
             {renderQuestionCard({
               question,
-              language,
               isMobile,
               submissionStats,
             })}

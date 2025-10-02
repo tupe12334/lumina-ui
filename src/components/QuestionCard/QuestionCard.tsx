@@ -1,14 +1,14 @@
-import type { JSX, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import type { QuestionCardProps } from './types';
 import { CardHeader } from './components/CardHeader';
 import { CardContent } from './components/CardContent';
 import { CardModules } from './components/CardModules';
 
 function renderQuestionText(props: QuestionCardProps): ReactNode {
-  const { question, language, renderText, translate } = props;
+  const { question, renderText } = props;
   return renderText({
     questionId: question.id,
-    text: translate(question.text, language),
+    text: question.text,
     size: '3',
     weight: 'medium',
   });
@@ -28,7 +28,7 @@ function renderMultipartBadge(props: QuestionCardProps): ReactNode {
 }
 
 function renderProgress(props: QuestionCardProps): ReactNode {
-  const { submissionStats, isAuthenticated, renderProgressIndicator, language, isMobile, question } = props;
+  const { submissionStats, isAuthenticated, renderProgressIndicator, isMobile, question } = props;
 
   const hasSubmissions =
     isAuthenticated &&
@@ -43,7 +43,6 @@ function renderProgress(props: QuestionCardProps): ReactNode {
     questionId: question.id,
     submissions: submissionStats.submissions,
     stats: submissionStats,
-    language,
     size: 'small',
     showTooltip: !isMobile,
     scoreOnly: isMobile,
@@ -51,15 +50,15 @@ function renderProgress(props: QuestionCardProps): ReactNode {
   });
 }
 
-export function QuestionCard(props: QuestionCardProps): JSX.Element {
-  const { question, language, isMobile, renderLink, renderCard, renderBadge, translate } = props;
+export function QuestionCard(props: QuestionCardProps): ReactNode {
+  const { question, isMobile, renderLink, renderCard, renderBadge } = props;
 
   const questionText = renderQuestionText(props);
   const multipartBadge = renderMultipartBadge(props);
   const progressIndicator = renderProgress(props);
 
   const modulesContent = question.modules && question.modules.length > 0 ? (
-    <CardModules questionId={question.id} modules={question.modules} renderBadge={renderBadge} translate={translate} language={language} />
+    <CardModules questionId={question.id} modules={question.modules} renderBadge={renderBadge} />
   ) : null;
 
   const link = renderLink({
@@ -70,7 +69,6 @@ export function QuestionCard(props: QuestionCardProps): JSX.Element {
       children: (
         <CardContent
           question={question}
-          language={language}
           isMobile={isMobile}
           headerContent={<CardHeader questionText={questionText} multipartBadge={multipartBadge} progressIndicator={progressIndicator} isMobile={isMobile} />}
           modulesContent={modulesContent}
