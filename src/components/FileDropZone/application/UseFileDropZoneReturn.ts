@@ -1,15 +1,7 @@
 import { FileUpload } from '../domain/FileUpload'
-import { FileValidationRules, type FileValidationConfig } from '../domain/FileValidation'
+import { FileValidationRules } from '../domain/FileValidation'
 import { DragState } from '../domain/DragState'
 import { DragEvent } from 'react'
-
-export interface UseFileDropZoneConfig extends Partial<FileValidationConfig> {
-  onFilesAdded?: (files: FileUpload[]) => void
-  onFileRemoved?: (fileId: string) => void
-  onFileRetried?: (fileId: string) => void
-  onError?: (errors: string[]) => void
-  autoUpload?: boolean
-}
 
 export interface UseFileDropZoneReturn {
   files: FileUpload[]

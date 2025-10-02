@@ -1,4 +1,4 @@
-import { UploadIcon } from '../infrastructure/IconComponents'
+import { UploadIcon } from '../infrastructure/UploadIcon'
 import styles from '../FileDropZone.module.css'
 
 interface DropZoneIconProps {

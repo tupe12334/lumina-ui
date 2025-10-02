@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { useFileDropZoneComponent } from './hooks/useFileDropZoneComponent'
 import { FilesList } from './components/FilesList'
 import { DropZoneArea } from './components/DropZoneArea'
-import { type UseFileDropZoneConfig } from './application/types'
+import { type UseFileDropZoneConfig } from './application/UseFileDropZoneConfig'
 import styles from './FileDropZone.module.css'
 
 export interface FileDropZoneProps extends UseFileDropZoneConfig {

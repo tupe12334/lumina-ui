@@ -1,13 +1,8 @@
-import { FileStatusValue, type FileStatus } from './FileStatus'
-
-export interface FileUploadData {
-  id: string
-  file: File
-  status: FileStatus
-  progress: number
-  error?: string
-  previewUrl?: string
-}
+import { FileStatusValue } from './FileStatus'
+import { type FileStatus } from './FileStatusType'
+import { type FileUploadData } from './FileUploadData'
+import { FileUploadMethods } from './FileUploadMethods'
+import { FileUploadDataConverter } from './FileUploadDataConverter'
 
 export class FileUpload {
   private constructor(
@@ -74,71 +69,31 @@ export class FileUpload {
   }
 
   public withStatus(status: FileStatus): FileUpload {
-    const newStatus = FileStatusValue.create(status)
-    return new FileUpload(
-      this.id,
-      this.file,
-      newStatus,
-      this.progress,
-      this.error,
-      this.previewUrl
-    )
+    const result = FileUploadMethods.withStatus(this.id, this.file, this.progress, this.error, this.previewUrl, status)
+    return new FileUpload(result.id, result.file, result.status, result.progress, result.error, result.previewUrl)
   }
 
   public withProgress(progress: number): FileUpload {
-    const clampedProgress = Math.max(0, Math.min(100, progress))
-    return new FileUpload(
-      this.id,
-      this.file,
-      this.status,
-      clampedProgress,
-      this.error,
-      this.previewUrl
-    )
+    const result = FileUploadMethods.withProgress(this.id, this.file, this.status, this.error, this.previewUrl, progress)
+    return new FileUpload(result.id, result.file, result.status, result.progress, result.error, result.previewUrl)
   }
 
   public withError(error: string): FileUpload {
-    const failedStatus = FileStatusValue.create('failed')
-    return new FileUpload(
-      this.id,
-      this.file,
-      failedStatus,
-      this.progress,
-      error,
-      this.previewUrl
-    )
+    const result = FileUploadMethods.withError(this.id, this.file, this.progress, this.previewUrl, error)
+    return new FileUpload(result.id, result.file, result.status, result.progress, result.error, result.previewUrl)
   }
 
   public withPreviewUrl(previewUrl: string): FileUpload {
-    return new FileUpload(
-      this.id,
-      this.file,
-      this.status,
-      this.progress,
-      this.error,
-      previewUrl
-    )
+    const result = FileUploadMethods.withPreviewUrl(this.id, this.file, this.status, this.progress, this.error, previewUrl)
+    return new FileUpload(result.id, result.file, result.status, result.progress, result.error, result.previewUrl)
   }
 
   public clearError(): FileUpload {
-    return new FileUpload(
-      this.id,
-      this.file,
-      this.status,
-      this.progress,
-      undefined,
-      this.previewUrl
-    )
+    const result = FileUploadMethods.clearError(this.id, this.file, this.status, this.progress, this.previewUrl)
+    return new FileUpload(result.id, result.file, result.status, result.progress, result.error, result.previewUrl)
   }
 
   public toData(): FileUploadData {
-    return {
-      id: this.id,
-      file: this.file,
-      status: this.status.getStatus(),
-      progress: this.progress,
-      error: this.error,
-      previewUrl: this.previewUrl
-    }
+    return FileUploadDataConverter.toData(this.id, this.file, this.status, this.progress, this.error, this.previewUrl)
   }
 }

@@ -1,10 +1,11 @@
-export type DragStateType = 'idle' | 'dragOver' | 'dragLeave'
+type DragStateType = 'idle' | 'dragOver' | 'dragLeave'
 
 export class DragState {
   private constructor(private readonly state: DragStateType) {}
 
-  public static create(state: DragStateType = 'idle'): DragState {
-    return new DragState(state)
+  public static create(state?: DragStateType): DragState {
+    const defaultState = state || 'idle'
+    return new DragState(defaultState)
   }
 
   public getState(): DragStateType {

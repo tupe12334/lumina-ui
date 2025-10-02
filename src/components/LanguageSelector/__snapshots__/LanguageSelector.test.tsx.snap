@@ -1,0 +1,232 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LanguageSelector renders correctly when disabled 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    disabled=""
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly with custom className 1`] = `
+<div
+  class="_selector_729a27 custom-class"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly with custom languages 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly with default props 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly with large size 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly with region in label 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly with regions 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly with selected language 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      🇺🇸 English
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly with small size 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;
+
+exports[`LanguageSelector renders correctly without flags 1`] = `
+<div
+  class="_selector_729a27"
+>
+  <button
+    class="_trigger_729a27"
+    type="button"
+  >
+    <span
+      class="_value_729a27"
+    >
+      Select a language
+    </span>
+    <span
+      aria-hidden="true"
+      class="_icon_729a27"
+    >
+      ▼
+    </span>
+  </button>
+</div>
+`;

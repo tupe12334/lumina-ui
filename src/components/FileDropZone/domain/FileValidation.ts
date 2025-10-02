@@ -1,14 +1,10 @@
-export interface FileValidationConfig {
-  maxFileSize: number // in bytes
-  maxFiles: number
-  acceptedTypes: string[]
-  allowMultiple: boolean
-}
+import { type FileValidationConfig } from './FileValidationConfig'
 
 export class FileValidationRules {
   private constructor(private readonly config: FileValidationConfig) {}
 
-  public static create(config: Partial<FileValidationConfig> = {}): FileValidationRules {
+  public static create(config?: Partial<FileValidationConfig>): FileValidationRules {
+    const inputConfig = config || {}
     const defaultConfig: FileValidationConfig = {
       maxFileSize: 10 * 1024 * 1024, // 10MB
       maxFiles: 5,
@@ -18,7 +14,7 @@ export class FileValidationRules {
 
     return new FileValidationRules({
       ...defaultConfig,
-      ...config
+      ...inputConfig
     })
   }
 
@@ -51,13 +47,14 @@ export class FileValidationRules {
     return null
   }
 
-  public validateFileList(files: File[], currentCount: number = 0): string | null {
+  public validateFileList(files: File[], currentCount?: number): string | null {
+    const count = currentCount || 0
     // Check max files limit
     if (!this.config.allowMultiple && files.length > 1) {
       return 'Only one file is allowed'
     }
 
-    if (currentCount + files.length > this.config.maxFiles) {
+    if (count + files.length > this.config.maxFiles) {
       return `Cannot upload more than ${this.config.maxFiles} files total`
     }
 
@@ -82,6 +79,10 @@ export class FileValidationRules {
     const sizes = ['Bytes', 'KB', 'MB', 'GB']
     const i = Math.floor(Math.log(bytes) / Math.log(k))
 
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+    if (i >= sizes.length || i < 0) {
+      return 'File too large'
+    }
+    const sizeUnit = sizes[Math.min(i, sizes.length - 1)]
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizeUnit
   }
 }

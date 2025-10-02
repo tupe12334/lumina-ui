@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFileDropZone } from '../application/useFileDropZone'
 import { useFileDropZoneRef } from './useFileDropZoneRef'
-import { type UseFileDropZoneConfig } from '../application/types'
+import { type UseFileDropZoneConfig } from '../application/UseFileDropZoneConfig'
 import { type FileDropZoneRef } from '../FileDropZone'
 
 interface UseFileDropZoneComponentProps extends UseFileDropZoneConfig {

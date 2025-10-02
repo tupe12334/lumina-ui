@@ -1,5 +1,5 @@
 import { DropZoneContent } from './DropZoneContent'
-import { cn } from '../infrastructure/utils'
+import { cn } from '../infrastructure/cn'
 import styles from '../FileDropZone.module.css'
 
 interface DropZoneAreaProps {

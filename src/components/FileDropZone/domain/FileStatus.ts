@@ -1,16 +1,11 @@
-export type FileStatus =
-  | 'pending'
-  | 'uploading'
-  | 'uploaded'
-  | 'processing'
-  | 'completed'
-  | 'failed'
+import { type FileStatus } from './FileStatusType'
 
 export class FileStatusValue {
   private constructor(private readonly status: FileStatus) {}
 
   public static create(status?: FileStatus): FileStatusValue {
-    return new FileStatusValue(status || 'pending')
+    const defaultStatus = status || 'pending'
+    return new FileStatusValue(defaultStatus)
   }
 
   public getStatus(): FileStatus {
