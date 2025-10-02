@@ -2,6 +2,18 @@
 
 Thank you for your interest in contributing to Lumina UI! This guide will help you understand the project structure and how to contribute effectively.
 
+## Table of Contents
+
+- [Folder Structure](#folder-structure)
+- [Development Guidelines](#development-guidelines)
+- [Creating a New Component](#creating-a-new-component)
+- [Testing Guidelines](#testing-guidelines)
+- [Storybook](#storybook)
+- [Code Style and Conventions](#code-style-and-conventions)
+- [Automated Quality Checks](#automated-quality-checks)
+- [Pull Request Process](#pull-request-process)
+- [Release Process](#release-process)
+
 ## Folder Structure
 
 The project follows a **Domain-Driven Design (DDD)** architecture and is organized to maintain clarity and scalability:
@@ -12,12 +24,20 @@ lumina-ui/
 ├── src/                     # Source code
 │   ├── components/          # UI components
 │   │   ├── ComponentName/   # Individual component folder
-│   │   │   ├── components/  # Sub-components (if any)
-│   │   │   ├── tests/       # Component tests
-│   │   │   │   └── visual/  # Visual regression tests
-│   │   │   └── __snapshots__/ # Jest snapshots
+│   │   │   ├── ComponentName.tsx           # Main component
+│   │   │   ├── ComponentName.test.tsx      # Unit tests
+│   │   │   ├── ComponentName.stories.tsx   # Storybook stories
+│   │   │   ├── ComponentName.module.css    # Component styles (if needed)
+│   │   │   ├── index.ts                    # Barrel export
+│   │   │   ├── components/                 # Sub-components (if any)
+│   │   │   ├── tests/                      # Additional tests
+│   │   │   │   └── visual/                 # Visual regression tests
+│   │   │   │       ├── ComponentName.spec.ts
+│   │   │   │       └── ComponentName.spec.ts-snapshots/
+│   │   │   └── __snapshots__/              # Jest snapshots
 │   │   └── ...
 │   ├── test/                # Test utilities and helpers
+│   └── types/               # Shared TypeScript types
 ```
 
 This structure promotes separation of concerns, testability, and maintainability while making it easy for contributors to understand where different types of code should be placed.
@@ -34,6 +54,7 @@ When implementing functionality, **always prefer using existing libraries over w
 4. **Avoid reinventing** - Don't write custom implementations for common patterns
 
 **Examples:**
+
 - Use `clsx` for conditional CSS classes instead of custom string concatenation
 - Use `date-fns` or `dayjs` for date manipulation instead of custom date logic
 - Use `zod` for schema validation instead of custom validation functions
