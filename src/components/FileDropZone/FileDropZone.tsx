@@ -53,7 +53,7 @@ export const FileDropZone = forwardRef<FileDropZoneRef, FileDropZoneProps>(
     } = useFileDropZoneComponent({ disabled, ...config }, ref)
 
     return (
-      <div className={styles.container}>
+      <div className={className ? `${styles.container} ${className}` : styles.container}>
         <DropZoneArea
           icon={icon}
           title={title}

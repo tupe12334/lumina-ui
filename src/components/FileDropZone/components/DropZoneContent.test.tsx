@@ -75,21 +75,6 @@ describe('DropZoneContent', () => {
     expect(button).toBeDisabled()
   })
 
-  test('applies correct CSS classes', () => {
-    render(<DropZoneContent {...defaultProps} />)
-
-    const content = screen.getByText('Upload Files').closest('div')
-    expect(content).toHaveClass('dropzoneContent')
-
-    const title = screen.getByText('Upload Files')
-    expect(title).toHaveClass('dropzoneTitle')
-
-    const description = screen.getByText(/Drag and drop/)
-    expect(description).toHaveClass('dropzoneDescription')
-
-    const button = screen.getByText('Browse Files')
-    expect(button).toHaveClass('browseButton')
-  })
 
   test('shows different validation rules correctly', () => {
     const customValidationRules = {

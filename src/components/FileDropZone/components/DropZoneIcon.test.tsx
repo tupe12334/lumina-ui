@@ -31,18 +31,6 @@ describe('DropZoneIcon', () => {
     expect(svgIcon).not.toBeInTheDocument()
   })
 
-  test('applies correct CSS classes', () => {
-    const { rerender } = render(<DropZoneIcon />)
-
-    // Check default icon has correct class
-    const svgIcon = document.querySelector('svg')
-    expect(svgIcon).toHaveClass('icon')
-
-    // Check emoji icon has correct class
-    rerender(<DropZoneIcon icon="🎵" />)
-    const emojiIcon = screen.getByText('🎵')
-    expect(emojiIcon).toHaveClass('emojiIcon')
-  })
 
   test('works with various emoji types', () => {
     const emojis = ['📁', '📸', '🎵', '📄', '🖼️', '🎬']

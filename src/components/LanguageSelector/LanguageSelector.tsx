@@ -9,7 +9,7 @@ export interface Language {
 }
 
 export interface SimpleLanguageSelectorProps {
-  languages?: Language[]
+  languages: Language[]
   value?: string
   placeholder?: string
   disabled?: boolean
@@ -18,18 +18,6 @@ export interface SimpleLanguageSelectorProps {
   onChange?: (languageCode: string) => void
 }
 
-const defaultLanguages: Language[] = [
-  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
-  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
-  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
-  { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹' },
-  { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇵🇹' },
-  { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺' },
-  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
-  { code: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷' },
-  { code: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
-]
 
 export const LanguageSelector = React.forwardRef<HTMLDivElement, SimpleLanguageSelectorProps>(
   (props, ref) => {
@@ -43,7 +31,7 @@ export const LanguageSelector = React.forwardRef<HTMLDivElement, SimpleLanguageS
       onChange
     } = props
 
-    const finalLanguages = languages || defaultLanguages
+    const finalLanguages = languages
     const shouldShowFlags = showFlags !== false
 
     const options: SelectorOption[] = finalLanguages.map((language) => {

@@ -26,15 +26,15 @@ exports[`FileDropZone > renders correctly with default props 1`] = `
         width="48"
       >
         <path
-          class=""
+          class="_icon_3af3de"
           d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
         />
         <polyline
-          class=""
+          class="_icon_3af3de"
           points="7,10 12,5 17,10"
         />
         <line
-          class=""
+          class="_icon_3af3de"
           x1="12"
           x2="12"
           y1="5"

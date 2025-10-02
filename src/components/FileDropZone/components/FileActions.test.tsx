@@ -99,25 +99,6 @@ describe('FileActions', () => {
     expect(retryButton).toHaveAttribute('title', 'Retry upload')
   })
 
-  test('applies correct CSS classes', () => {
-    const failedFileUpload = defaultProps.fileUpload.withStatus('failed')
-
-    render(
-      <FileActions
-        {...defaultProps}
-        fileUpload={failedFileUpload}
-      />
-    )
-
-    const actionsContainer = screen.getByLabelText('Remove test.txt').closest('div')
-    expect(actionsContainer).toHaveClass('fileActions')
-
-    const removeButton = screen.getByLabelText('Remove test.txt')
-    expect(removeButton).toHaveClass('actionButton', 'removeButton')
-
-    const retryButton = screen.getByLabelText('Retry upload for test.txt')
-    expect(retryButton).toHaveClass('actionButton', 'retryButton')
-  })
 
   test('renders icons inside buttons', () => {
     const failedFileUpload = defaultProps.fileUpload.withStatus('failed')

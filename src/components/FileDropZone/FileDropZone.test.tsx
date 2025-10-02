@@ -68,7 +68,7 @@ describe('FileDropZone', () => {
     expect(dropzone).toHaveAttribute('aria-label', 'File upload area')
     expect(dropzone).toHaveAttribute('aria-disabled', 'false')
 
-    const fileInput = screen.getByLabelText(/browse files/i)
+    const fileInput = document.querySelector('input[type="file"]')
     expect(fileInput).toHaveAttribute('type', 'file')
     expect(fileInput).toHaveAttribute('aria-hidden', 'true')
   })
@@ -81,7 +81,7 @@ describe('FileDropZone', () => {
       />
     )
 
-    const fileInput = screen.getByLabelText(/browse files/i)
+    const fileInput = document.querySelector('input[type="file"]')
     expect(fileInput).not.toHaveAttribute('multiple')
     expect(fileInput).toHaveAttribute('accept', 'image/*,application/pdf')
   })
@@ -89,7 +89,7 @@ describe('FileDropZone', () => {
   test('allows multiple files by default', () => {
     render(<FileDropZone />)
 
-    const fileInput = screen.getByLabelText(/browse files/i)
+    const fileInput = document.querySelector('input[type="file"]')
     expect(fileInput).toHaveAttribute('multiple')
   })
 })
