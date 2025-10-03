@@ -66,7 +66,9 @@ describe('fileTypeCheckers', () => {
     })
 
     it('should be case sensitive with MIME type', () => {
-      const file = new File(['image'], 'test.jpg', { type: 'IMAGE/JPEG' })
+      const file = new File(['image'], 'test.jpg', { type: 'image/jpeg' })
+      // Mock the type property to be uppercase
+      Object.defineProperty(file, 'type', { value: 'IMAGE/JPEG', writable: false })
       expect(isImageFile(file)).toBe(false)
     })
 

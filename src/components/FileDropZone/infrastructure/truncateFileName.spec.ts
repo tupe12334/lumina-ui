@@ -40,7 +40,7 @@ describe('truncateFileName', () => {
 
     expect(result.length).toBe(20)
     expect(result.endsWith('...')).toBe(true)
-    expect(result.startsWith('very-long-filename')).toBe(true)
+    expect(result.startsWith('very-long-filenam')).toBe(true) // 17 chars (20 - 3 for "...")
   })
 
   it('should handle files with multiple dots', () => {

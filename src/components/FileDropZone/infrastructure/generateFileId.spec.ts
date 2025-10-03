@@ -13,6 +13,8 @@ describe('generateFileId', () => {
 
   beforeEach(() => {
     mockFile = new File(['content'], 'test.txt', { type: 'text/plain' })
+    mockedNanoid.mockClear()
+    mockedNanoid.mockReset()
     mockedNanoid.mockReturnValue('mocked-nanoid-123')
   })
 
@@ -105,13 +107,16 @@ describe('generateFileId', () => {
   })
 
   it('should create valid ID format', () => {
-    const result = generateFileId(mockFile)
-    const parts = result.split('-')
+    // Ensure the mock is set correctly for this test
+    mockedNanoid.mockReturnValueOnce('mocked-nanoid-123')
 
-    expect(parts.length).toBeGreaterThanOrEqual(3)
-    expect(parts[0]).toBe('test.txt')
-    expect(parts[1]).toBe(mockFile.size.toString())
-    expect(parts[parts.length - 1]).toBe('mocked-nanoid-123')
+    const result = generateFileId(mockFile)
+
+    // Test the full format instead of splitting by - since nanoid can contain hyphens
+    expect(result).toBe(`${mockFile.name}-${mockFile.size}-mocked-nanoid-123`)
+    expect(result).toContain('test.txt')
+    expect(result).toContain(mockFile.size.toString())
+    expect(result).toContain('mocked-nanoid-123')
   })
 
   it('should generate unique IDs for identical files', () => {

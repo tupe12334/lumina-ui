@@ -34,7 +34,9 @@ describe('isPdfFile', () => {
   })
 
   it('should be case sensitive with MIME type', () => {
-    const file = new File(['pdf'], 'document.pdf', { type: 'APPLICATION/PDF' })
+    const file = new File(['pdf'], 'document.pdf', { type: 'application/pdf' })
+    // Mock the type property to be uppercase
+    Object.defineProperty(file, 'type', { value: 'APPLICATION/PDF', writable: false })
     expect(isPdfFile(file)).toBe(false)
   })
 

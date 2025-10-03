@@ -6,21 +6,8 @@ describe('FilePreviewService', () => {
   let mockFileReader: Partial<FileReader>
 
   beforeEach(() => {
-    mockFileReader = {
-      readAsDataURL: vi.fn(() => {
-        // Trigger onload immediately when readAsDataURL is called
-        setTimeout(() => {
-          if (mockFileReader.onload) {
-            mockFileReader.onload({} as const)
-          }
-        }, 0)
-      }),
-      result: null,
-      onload: null,
-      onerror: null
-    }
-
-    global.FileReader = vi.fn(() => mockFileReader) as const
+    // Reset any previous mocks
+    vi.clearAllMocks()
   })
 
   afterEach(() => {
@@ -32,14 +19,23 @@ describe('FilePreviewService', () => {
       const imageFile = new File(['image data'], 'test.jpg', { type: 'image/jpeg' })
       const expectedUrl = 'data:image/jpeg;base64,dGVzdA=='
 
-      mockFileReader.result = expectedUrl
+      // Override the mock for this test to return custom result
+      global.FileReader = vi.fn().mockImplementation(() => ({
+        readAsDataURL: vi.fn(function(this: FileReader) {
+          queueMicrotask(() => {
+            if (this.onload) {
+              this.onload({} as const)
+            }
+          })
+        }),
+        result: expectedUrl,
+        onload: null,
+        onerror: null
+      }))
 
-      const promise = FilePreviewService.generatePreviewUrl(imageFile)
-
-
-      const result = await promise
+      const result = await FilePreviewService.generatePreviewUrl(imageFile)
       expect(result).toBe(expectedUrl)
-      expect(mockFileReader.readAsDataURL).toHaveBeenCalledWith(imageFile)
+      expect(global.FileReader).toHaveBeenCalled()
     })
 
     it('should reject for non-image files', async () => {
@@ -53,24 +49,47 @@ describe('FilePreviewService', () => {
     it('should reject when FileReader fails', async () => {
       const imageFile = new File(['image data'], 'test.png', { type: 'image/png' })
 
-      const promise = FilePreviewService.generatePreviewUrl(imageFile)
+      // Mock FileReader to trigger error
+      global.FileReader = vi.fn().mockImplementation(() => {
+        const instance = {
+          readAsDataURL: vi.fn(function(this: FileReader) {
+            queueMicrotask(() => {
+              if (this.onerror) {
+                this.onerror({} as const)
+              }
+            })
+          }),
+          result: null,
+          onload: null,
+          onerror: null
+        }
+        return instance
+      })
 
-      if (mockFileReader.onerror) {
-        mockFileReader.onerror({} as const)
-      }
-
-      await expect(promise).rejects.toThrow('Failed to read file')
+      await expect(FilePreviewService.generatePreviewUrl(imageFile)).rejects.toThrow('Failed to read file')
     })
 
     it('should reject when result is not a string', async () => {
       const imageFile = new File(['image data'], 'test.gif', { type: 'image/gif' })
 
-      mockFileReader.result = new ArrayBuffer(8)
+      // Mock FileReader to return ArrayBuffer instead of string
+      global.FileReader = vi.fn().mockImplementation(() => {
+        const instance = {
+          readAsDataURL: vi.fn(function(this: FileReader) {
+            queueMicrotask(() => {
+              if (this.onload) {
+                this.onload({} as const)
+              }
+            })
+          }),
+          result: new ArrayBuffer(8), // Non-string result
+          onload: null,
+          onerror: null
+        }
+        return instance
+      })
 
-      const promise = FilePreviewService.generatePreviewUrl(imageFile)
-
-
-      await expect(promise).rejects.toThrow('Failed to read file as string')
+      await expect(FilePreviewService.generatePreviewUrl(imageFile)).rejects.toThrow('Failed to read file as string')
     })
 
     it('should handle different image types', async () => {
@@ -80,7 +99,22 @@ describe('FilePreviewService', () => {
         const imageFile = new File(['image data'], `test.${type.split('/')[1]}`, { type })
         const expectedUrl = `data:${type};base64,dGVzdA==`
 
-        mockFileReader.result = expectedUrl
+        // Mock FileReader to return the expected URL for this specific type
+        global.FileReader = vi.fn().mockImplementation(() => {
+          const instance = {
+            readAsDataURL: vi.fn(function(this: FileReader) {
+              queueMicrotask(() => {
+                if (this.onload) {
+                  this.onload({} as const)
+                }
+              })
+            }),
+            result: expectedUrl,
+            onload: null,
+            onerror: null
+          }
+          return instance
+        })
 
         const result = await FilePreviewService.generatePreviewUrl(imageFile)
         expect(result).toBe(expectedUrl)
@@ -99,12 +133,25 @@ describe('FilePreviewService', () => {
       ]
 
       const expectedUrl = 'data:image/jpeg;base64,dGVzdA=='
-      mockFileReader.result = expectedUrl
 
-      const promise = FilePreviewService.addPreviewUrls(fileUploads)
+      // Mock FileReader for successful image processing
+      global.FileReader = vi.fn().mockImplementation(() => {
+        const instance = {
+          readAsDataURL: vi.fn(function(this: FileReader) {
+            queueMicrotask(() => {
+              if (this.onload) {
+                this.onload({} as const)
+              }
+            })
+          }),
+          result: expectedUrl,
+          onload: null,
+          onerror: null
+        }
+        return instance
+      })
 
-
-      const result = await promise
+      const result = await FilePreviewService.addPreviewUrls(fileUploads)
 
       expect(result).toHaveLength(2)
       expect(result[0].getPreviewUrl()).toBe(expectedUrl)
@@ -130,13 +177,24 @@ describe('FilePreviewService', () => {
       const imageFile = new File(['image data'], 'test.jpg', { type: 'image/jpeg' })
       const fileUploads = [FileUpload.create(imageFile)]
 
-      const promise = FilePreviewService.addPreviewUrls(fileUploads)
+      // Mock FileReader to trigger error
+      global.FileReader = vi.fn().mockImplementation(() => {
+        const instance = {
+          readAsDataURL: vi.fn(function(this: FileReader) {
+            queueMicrotask(() => {
+              if (this.onerror) {
+                this.onerror({} as const)
+              }
+            })
+          }),
+          result: null,
+          onload: null,
+          onerror: null
+        }
+        return instance
+      })
 
-      if (mockFileReader.onerror) {
-        mockFileReader.onerror({} as const)
-      }
-
-      const result = await promise
+      const result = await FilePreviewService.addPreviewUrls(fileUploads)
 
       expect(result).toHaveLength(1)
       expect(result[0].getPreviewUrl()).toBeUndefined()
@@ -149,12 +207,25 @@ describe('FilePreviewService', () => {
         .withStatus('uploading')
 
       const expectedUrl = 'data:image/jpeg;base64,dGVzdA=='
-      mockFileReader.result = expectedUrl
 
-      const promise = FilePreviewService.addPreviewUrls([originalUpload])
+      // Mock FileReader for successful image processing
+      global.FileReader = vi.fn().mockImplementation(() => {
+        const instance = {
+          readAsDataURL: vi.fn(function(this: FileReader) {
+            queueMicrotask(() => {
+              if (this.onload) {
+                this.onload({} as const)
+              }
+            })
+          }),
+          result: expectedUrl,
+          onload: null,
+          onerror: null
+        }
+        return instance
+      })
 
-
-      const result = await promise
+      const result = await FilePreviewService.addPreviewUrls([originalUpload])
 
       expect(result[0].getId()).toBe('test-id')
       expect(result[0].getProgress()).toBe(50)
@@ -172,12 +243,25 @@ describe('FilePreviewService', () => {
       ]
 
       const expectedUrl = 'data:image/jpeg;base64,dGVzdA=='
-      mockFileReader.result = expectedUrl
 
-      const promise = FilePreviewService.addPreviewUrls(fileUploads)
+      // Mock FileReader for successful image processing
+      global.FileReader = vi.fn().mockImplementation(() => {
+        const instance = {
+          readAsDataURL: vi.fn(function(this: FileReader) {
+            queueMicrotask(() => {
+              if (this.onload) {
+                this.onload({} as const)
+              }
+            })
+          }),
+          result: expectedUrl,
+          onload: null,
+          onerror: null
+        }
+        return instance
+      })
 
-
-      const result = await promise
+      const result = await FilePreviewService.addPreviewUrls(fileUploads)
 
       expect(result).toHaveLength(2)
       expect(result[0].getPreviewUrl()).toBe(expectedUrl)

@@ -62,7 +62,9 @@ describe('isVideoFile', () => {
   })
 
   it('should be case sensitive with MIME type', () => {
-    const file = new File(['video'], 'test.mp4', { type: 'VIDEO/MP4' })
+    const file = new File(['video'], 'test.mp4', { type: 'video/mp4' })
+    // Mock the type property to be uppercase
+    Object.defineProperty(file, 'type', { value: 'VIDEO/MP4', writable: false })
     expect(isVideoFile(file)).toBe(false)
   })
 
