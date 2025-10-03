@@ -102,7 +102,7 @@ describe('downloadFile', () => {
   it('should handle zero-size files', () => {
     const emptyFile = new File([], 'empty.txt', { type: 'text/plain' })
 
-    downloadFile(file)
+    downloadFile(emptyFile)
 
     expect(mockedSaveAs).toHaveBeenCalledWith(emptyFile, 'empty.txt')
   })

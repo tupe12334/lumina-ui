@@ -3,7 +3,12 @@ import { cn } from './cn'
 import clsx from 'clsx'
 
 vi.mock('clsx', () => {
-  const mockClsx = vi.fn((...args) => args.filter(Boolean).join(' '))
+  const mockClsx = vi.fn((inputs) => {
+    if (Array.isArray(inputs)) {
+      return inputs.filter(Boolean).join(' ')
+    }
+    return Array.from(arguments).filter(Boolean).join(' ')
+  })
   return {
     default: mockClsx,
     clsx: mockClsx
