@@ -7,7 +7,14 @@ describe('FilePreviewService', () => {
 
   beforeEach(() => {
     mockFileReader = {
-      readAsDataURL: vi.fn(),
+      readAsDataURL: vi.fn(() => {
+        // Trigger onload immediately when readAsDataURL is called
+        setTimeout(() => {
+          if (mockFileReader.onload) {
+            mockFileReader.onload({} as const)
+          }
+        }, 0)
+      }),
       result: null,
       onload: null,
       onerror: null
@@ -29,9 +36,6 @@ describe('FilePreviewService', () => {
 
       const promise = FilePreviewService.generatePreviewUrl(imageFile)
 
-      if (mockFileReader.onload) {
-        mockFileReader.onload({} as const)
-      }
 
       const result = await promise
       expect(result).toBe(expectedUrl)
@@ -65,9 +69,6 @@ describe('FilePreviewService', () => {
 
       const promise = FilePreviewService.generatePreviewUrl(imageFile)
 
-      if (mockFileReader.onload) {
-        mockFileReader.onload({} as const)
-      }
 
       await expect(promise).rejects.toThrow('Failed to read file as string')
     })
@@ -81,16 +82,7 @@ describe('FilePreviewService', () => {
 
         mockFileReader.result = expectedUrl
 
-        const promise = FilePreviewService.generatePreviewUrl(imageFile)
-
-        // Use setTimeout to allow the promise to set up the onload handler
-        setTimeout(() => {
-          if (mockFileReader.onload) {
-            mockFileReader.onload({} as const)
-          }
-        }, 0)
-
-        const result = await promise
+        const result = await FilePreviewService.generatePreviewUrl(imageFile)
         expect(result).toBe(expectedUrl)
       }
     })
@@ -111,9 +103,6 @@ describe('FilePreviewService', () => {
 
       const promise = FilePreviewService.addPreviewUrls(fileUploads)
 
-      if (mockFileReader.onload) {
-        mockFileReader.onload({} as const)
-      }
 
       const result = await promise
 
@@ -164,9 +153,6 @@ describe('FilePreviewService', () => {
 
       const promise = FilePreviewService.addPreviewUrls([originalUpload])
 
-      if (mockFileReader.onload) {
-        mockFileReader.onload({} as const)
-      }
 
       const result = await promise
 
@@ -190,9 +176,6 @@ describe('FilePreviewService', () => {
 
       const promise = FilePreviewService.addPreviewUrls(fileUploads)
 
-      if (mockFileReader.onload) {
-        mockFileReader.onload({} as const)
-      }
 
       const result = await promise
 

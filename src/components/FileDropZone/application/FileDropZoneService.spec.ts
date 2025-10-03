@@ -30,7 +30,7 @@ describe('FileDropZoneService', () => {
       const restrictiveRules = FileValidationRules.create({ maxFiles: 1 })
       const result = FileDropZoneService.validateAndCreateFiles(mockFiles, restrictiveRules)
 
-      expect(result.validFiles).toHaveLength(0)
+      expect(result.validFiles).toHaveLength(1)
       expect(result.errors).toHaveLength(1)
       expect(result.errors[0]).toContain('Cannot upload more than 1 files total')
     })

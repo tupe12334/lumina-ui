@@ -13,6 +13,7 @@ describe('generateFileId', () => {
 
   beforeEach(() => {
     mockFile = new File(['content'], 'test.txt', { type: 'text/plain' })
+    mockedNanoid.mockReturnValue('mocked-nanoid-123')
   })
 
   it('should generate ID with file name, size, and nanoid', () => {
