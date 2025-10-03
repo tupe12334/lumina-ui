@@ -91,7 +91,7 @@ describe('FileManagementService', () => {
       const result = FileManagementService.updateFileError(mockFiles, 'file-1', errorMessage)
 
       expect(result[0].getError()).toBe(errorMessage)
-      expect(result[0].getStatus().getStatus()).toBe('error')
+      expect(result[0].getStatus().getStatus()).toBe('failed')
       expect(result[1].getError()).toBeUndefined()
       expect(result[2].getError()).toBeUndefined()
     })
@@ -100,7 +100,7 @@ describe('FileManagementService', () => {
       const result = FileManagementService.updateFileError(mockFiles, 'file-2', 'Network error')
 
       expect(result[1].getError()).toBe('Network error')
-      expect(result[1].getStatus().getStatus()).toBe('error')
+      expect(result[1].getStatus().getStatus()).toBe('failed')
     })
 
     it('should not modify other files when updating error', () => {

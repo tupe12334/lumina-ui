@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from 'vitest'
 import { cn } from './cn'
 import clsx from 'clsx'
 
-vi.mock('clsx', () => ({
-  default: vi.fn((...args) => args.filter(Boolean).join(' '))
-}))
+vi.mock('clsx', () => {
+  const mockClsx = vi.fn((...args) => args.filter(Boolean).join(' '))
+  return {
+    default: mockClsx,
+    clsx: mockClsx
+  }
+})
 
 const mockedClsx = vi.mocked(clsx)
 

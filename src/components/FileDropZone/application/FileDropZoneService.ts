@@ -13,15 +13,33 @@ export class FileDropZoneService {
     const validFiles: FileUpload[] = []
     const errors: string[] = []
 
-    // Validate file count
-    const countError = validationRules.validateFileList(fileArray, currentFilesList.length)
-    if (countError) {
-      errors.push(countError)
+    // Check if we can add any files
+    const maxFiles = validationRules.getMaxFiles()
+    const currentCount = currentFilesList.length
+    const availableSlots = maxFiles - currentCount
+
+    if (availableSlots <= 0) {
+      const countError = validationRules.validateFileList(fileArray, currentFilesList.length)
+      if (countError) {
+        errors.push(countError)
+      }
       return { validFiles, errors }
     }
 
-    // Validate each file
+    // Validate each file up to available slots
+    let processedCount = 0
     for (const file of fileArray) {
+      if (processedCount >= availableSlots) {
+        // Add error for files that exceed the limit
+        if (fileArray.length > availableSlots) {
+          const countError = validationRules.validateFileList(fileArray, currentFilesList.length)
+          if (countError) {
+            errors.push(countError)
+          }
+        }
+        break
+      }
+
       const validationError = validationRules.validateFile(file)
       if (validationError) {
         errors.push(`${file.name}: ${validationError}`)
@@ -37,7 +55,16 @@ export class FileDropZoneService {
           errors.push(`${file.name}: File already exists`)
         } else {
           validFiles.push(FileUpload.create(file))
+          processedCount++
         }
+      }
+    }
+
+    // Add count error if we're trying to add too many files
+    if (fileArray.length + currentCount > maxFiles) {
+      const countError = validationRules.validateFileList(fileArray, currentFilesList.length)
+      if (countError && !errors.includes(countError)) {
+        errors.push(countError)
       }
     }
 

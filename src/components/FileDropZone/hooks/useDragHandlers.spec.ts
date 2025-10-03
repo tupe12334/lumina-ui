@@ -228,8 +228,9 @@ describe('useDragHandlers', () => {
 
       mockSetDragState.mockClear()
 
-      // Next leave should trigger state update (counter was reset)
+      // Next enter and leave should trigger state update (counter starts fresh from 0)
       act(() => {
+        result.current.handleDragEnter(event)
         result.current.handleDragLeave(event)
       })
 

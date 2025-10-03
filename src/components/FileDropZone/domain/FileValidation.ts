@@ -72,6 +72,10 @@ export class FileValidationRules {
     return Math.round(this.config.maxFileSize / 1024 / 1024)
   }
 
+  public getMaxFiles(): number {
+    return this.config.maxFiles
+  }
+
   public formatFileSize(bytes: number): string {
     if (bytes === 0) return '0 Bytes'
 

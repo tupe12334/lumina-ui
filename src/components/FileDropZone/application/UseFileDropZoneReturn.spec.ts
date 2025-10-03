@@ -81,7 +81,7 @@ describe('UseFileDropZoneReturn', () => {
 
       const actions: Pick<UseFileDropZoneReturn, 'addFiles' | 'removeFile' | 'retryFile' | 'updateFileProgress' | 'updateFileStatus' | 'updateFileError'> = {
         addFiles: (files: FileList | File[]) => {
-          expect(Array.isArray(files) || files instanceof FileList).toBe(true)
+          expect(Array.isArray(files) || (files && typeof files.length === 'number')).toBe(true)
         },
         removeFile: (fileId: string) => {
           expect(typeof fileId).toBe('string')

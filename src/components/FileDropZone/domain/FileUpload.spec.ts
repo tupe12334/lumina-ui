@@ -94,7 +94,7 @@ describe('FileUpload', () => {
 
       expect(original.getError()).toBeUndefined()
       expect(updated.getError()).toBe(errorMessage)
-      expect(updated.getStatus().getStatus()).toBe('error')
+      expect(updated.getStatus().getStatus()).toBe('failed')
       expect(updated).not.toBe(original)
     })
   })

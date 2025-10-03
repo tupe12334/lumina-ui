@@ -83,9 +83,12 @@ describe('FilePreviewService', () => {
 
         const promise = FilePreviewService.generatePreviewUrl(imageFile)
 
-        if (mockFileReader.onload) {
-          mockFileReader.onload({} as const)
-        }
+        // Use setTimeout to allow the promise to set up the onload handler
+        setTimeout(() => {
+          if (mockFileReader.onload) {
+            mockFileReader.onload({} as const)
+          }
+        }, 0)
 
         const result = await promise
         expect(result).toBe(expectedUrl)
